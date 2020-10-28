@@ -1,0 +1,26 @@
+[
+  {
+    "name": "PlayStation 4",
+    "description": "Sony's 4th console",
+    "price": 299.99,
+    "stock_quantity": 17,
+    "discount": 0,
+    "category": "Video Game Consoles"
+  },
+  {
+    "name": "Nintendo Switch",
+    "description": "DS Deluxe",
+    "price": 399.99,
+    "stock_quantity": 7,
+    "discount": 10,
+    "category": "Video Game Consoles"
+  },
+  {
+    "name": "Watch Dogs",
+    "description": "Hackerman",
+    "price": 29.99,
+    "stock_quantity": 42,
+    "discount": 0,
+    "category": "Video Games"
+  }
+]
