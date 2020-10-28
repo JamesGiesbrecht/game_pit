@@ -2,8 +2,10 @@
 
 require "json"
 
-Category.destroy_all
+ProductDetail.destroy_all
 Product.destroy_all
+Category.destroy_all
+Detail.destroy_all
 
 products = JSON.parse(File.read(Rails.root.join("db/data/products.json")))
 
@@ -17,7 +19,17 @@ products.each do |p|
     discount:       p["discount"],
     category:       category
   )
+  p["details"].each do |d|
+    detail = Detail.find_or_create_by(name: d[0])
+    ProductDetail.create(
+      product: product,
+      detail:  detail,
+      value:   d[1]
+    )
+  end
   product.save
 end
-pp Product.take(2)
-pp Category.take(2)
+Product.take(3)[2].product_details.each do |d|
+  puts "#{d.detail.name}: #{d.value}"
+end
+# pp Category.take(2)
