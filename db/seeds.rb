@@ -7,6 +7,7 @@ Product.destroy_all
 Category.destroy_all
 Detail.destroy_all
 OrderStatus.destroy_all
+Address.destroy_all
 Province.destroy_all
 TaxType.destroy_all
 
@@ -14,6 +15,7 @@ products = JSON.parse(File.read(Rails.root.join("db/data/products.json")))
 tax_types = JSON.parse(File.read(Rails.root.join("db/data/tax_types.json")))
 order_statuses = JSON.parse(File.read(Rails.root.join("db/data/order_statuses.json")))
 provinces = JSON.parse(File.read(Rails.root.join("db/data/provinces.json")))
+addresses = JSON.parse(File.read(Rails.root.join("db/data/addresses.json")))
 
 products.each do |p|
   category = Category.find_or_create_by(name: p["category"])
@@ -46,12 +48,20 @@ end
 
 provinces.each do |p|
   tax_type = TaxType.find_by(name: p["salesTax"]["type"])
-  pp tax_type
   Province.create(
     name:     p["name"],
     gst:      p["salesTax"]["GST"],
     pst:      p["salesTax"][p["salesTax"]["type"]],
     tax_type: tax_type
+  )
+end
+
+addresses.each do |a|
+  province = Province.find_by(name: a["province"])
+  Address.create(
+    address:  a["address"],
+    city:     a["city"],
+    province: province
   )
 end
 
@@ -62,3 +72,4 @@ end
 pp OrderStatus.take(2)
 pp TaxType.take(2)
 pp Province.take(3)
+pp Address.take(2)
