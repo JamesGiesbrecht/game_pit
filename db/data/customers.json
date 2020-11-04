@@ -1,0 +1,36 @@
+[
+  {
+    "first": "James",
+    "last": "Giesbrecht",
+    "phone": 465789,
+    "email": "goo@gle.com",
+    "password": "password",
+    "addresses": [
+      {
+        "address": "123 Test St",
+        "city": "Winnipeg",
+        "province": "Manitoba"
+      },
+      {
+        "address": "123 Moon St",
+        "city": "Calgary",
+        "province": "Alberta"
+      },
+      {
+        "address": "1 Gas St",
+        "city": "Toronto",
+        "province": "Ontario"
+      },
+      {
+        "address": "62 Centre St",
+        "city": "Lowe Farm",
+        "province": "Manitoba"
+      },
+      {
+        "address": "9090 Spooner St",
+        "city": "Halifax",
+        "province": "Nova Scotia"
+      }
+    ]
+  }
+]

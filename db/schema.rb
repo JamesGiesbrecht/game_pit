@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_04_225738) do
+ActiveRecord::Schema.define(version: 2020_11_04_232356) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "address"
@@ -18,11 +18,23 @@ ActiveRecord::Schema.define(version: 2020_11_04_225738) do
     t.integer "province_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "customer_id", null: false
+    t.index ["customer_id"], name: "index_addresses_on_customer_id"
     t.index ["province_id"], name: "index_addresses_on_province_id"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "phone"
+    t.string "email"
+    t.string "password"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -77,6 +89,7 @@ ActiveRecord::Schema.define(version: 2020_11_04_225738) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "addresses", "customers"
   add_foreign_key "addresses", "provinces"
   add_foreign_key "product_details", "details"
   add_foreign_key "product_details", "products"
