@@ -2,6 +2,8 @@
 
 require "json"
 
+OrderProduct.destroy_all
+Order.destroy_all
 ProductDetail.destroy_all
 Product.destroy_all
 Category.destroy_all
