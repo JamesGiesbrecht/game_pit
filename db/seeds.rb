@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "json"
+require "open-uri"
 
 OrderProduct.destroy_all
 Order.destroy_all
@@ -75,7 +76,7 @@ video_games.each_with_index do |v, index|
                 else
                   [1000, 5000]
                 end
-  puts "Game #{index + 1} of #{game_count}"
+  puts "Seeding #{index + 1} of #{game_count}"
   game = Product.new(
     name:           v["name"],
     description:    "#{v['platform']} game developed by #{v['developer']}",
@@ -91,6 +92,8 @@ video_games.each_with_index do |v, index|
   add_detail(game, "Developer", v["developer"])
   add_detail(game, "Critic Score", v["criticScore"])
   add_detail(game, "User Score", v["userScore"])
+  image = open(v["imgUrl"])
+  game.image.attach(io: image, filename: "#{v['name'].gsub(' ', '_')}_#{v['platform'].gsub(' ', '_')}")
   game.save
 end
 
