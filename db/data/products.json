@@ -1,43 +1,311 @@
 [
   {
     "name": "PlayStation 4",
-    "description": "Sony's 4th console",
-    "price": 299.99,
+    "description": "Sleek and streamlined, the PlayStation 4 Slim opens the door to a world of immersive gaming and top-tier entertainment. Enjoy blockbuster storytelling presented in stunning Full HD 1080p and an online library full of exclusive content tailor-made for the PS4. Stream movies, tap into your favourite apps, and connect with your friends to embark on epic adventures together.",
+    "price": 379.99,
     "stock_quantity": 17,
+    "discount": 25,
+    "category": "Video Game Consoles",
+    "details": [
+      ["Manufacturer", "Sony"],
+      ["Capacity", "1 TB"],
+      ["Compatible Games", "PlayStation 4"],
+      ["Colour", "Black"],
+      ["Width", "26.5 cm"],
+      ["Height", "28.8 cm"],
+      ["Depth", "3.9 cm"],
+      ["Weight", "2 kg"]
+    ]
+  },
+  {
+    "name": "PlayStation 4 Pro",
+    "description": "The most advanced PlayStation system ever. PS4 Pro is designed to take your favorite PS4 games and add to them with more power for graphics, performance, or features for your 4K HDR TV, or 1080p HD TV. Ready to level up?",
+    "price": 449.99,
+    "stock_quantity": 17,
+    "discount": 5,
+    "category": "Video Game Consoles",
+    "details": [
+      ["Manufacturer", "Sony"],
+      ["Capacity", "1 TB"],
+      ["Compatible Games", "PlayStation 4"],
+      ["Colour", "Black"],
+      ["Width", "29.5 cm"],
+      ["Height", "5.5 cm"],
+      ["Depth", "32.7 cm"],
+      ["Weight", "3.2 kg"]
+    ]
+  },
+  {
+    "name": "Xbox One S",
+    "description": "Transform the way you game with the Xbox One S console. Equipped with 1TB of storage space, it accommodates loads of downloads and apps. It's compatible with more than 2,200 games, plays Blu-ray discs, and streams content in stunning 4K. The console comes with a wireless controller and a 1-month trial of Xbox Game Pass Ultimate for instant access to 100 games.",
+    "price": 379.99,
+    "stock_quantity": 15,
     "discount": 0,
     "category": "Video Game Consoles",
     "details": [
-      ["Height", "13 Inches"],
-      ["Width", "10 Inches"],
-      ["Depth", "4 Inches"],
-      ["Manufacturer", "Sony"]
+      ["Manufacturer", "Microsoft"],
+      ["Capacity", "1 TB"],
+      ["Compatible Games", "Xbox One"],
+      ["Colour", "White"],
+      ["Width", "40.6 cm"],
+      ["Height", "10.2 cm"],
+      ["Depth", "27.9 cm"],
+      ["Weight", "4.74 kg"]
     ]
   },
   {
     "name": "Nintendo Switch",
-    "description": "DS Deluxe",
+    "description": "Do what you never thought possible with Nintendo Switch. With up to 9 hours of battery, go from single- and multi-player thrills at home, to playing the same title wherever and whenever you want. Simply attach the Joy-Con controllers to the bright, hi-def display and you're all set. Or detach the controllers and give one to a friend for multiplayer action.",
     "price": 399.99,
     "stock_quantity": 7,
-    "discount": 10,
+    "discount": 0,
     "category": "Video Game Consoles",
     "details": [
-      ["Height", "5 Inches"],
-      ["Width", "12 Inches"],
-      ["Depth", "2 Inches"],
-      ["Manufacturer", "Nintendo"]
+      ["Manufacturer", "Nintendo"],
+      ["Capacity", "32 GB"],
+      ["Compatible Games", "Nintendo Switch"],
+      ["Colour", "Neon Red/Blue"],
+      ["Width", "30 cm"],
+      ["Height", "5 cm"],
+      ["Depth", "7 cm"],
+      ["Weight", "1 kg"]
     ]
   },
   {
-    "name": "Watch Dogs",
-    "description": "Hackerman",
-    "price": 29.99,
-    "stock_quantity": 42,
+    "name": "Nintendo Switch Lite",
+    "description": "Nintendo Switch Lite is a Nintendo Switch system that's optimized for personal, handheld play. It has a built-in +Control Pad and a sleek, unibody design, making it perfect for on-the-go gaming. Plus, it's compatible with games like Super Smash Bros. Ultimate, Super Mario Odyssey, The Legend of Zelda: Breath of the Wild, and more, so you can play your favourites anytime, anyplace.",
+    "price": 259.99,
+    "stock_quantity": 12,
     "discount": 0,
-    "category": "Video Games",
+    "category": "Video Game Consoles",
     "details": [
-      ["Publisher", "Ubisoft"],
-      ["Console", "PlayStation 4"],
-      ["Console", "XBox One"]
+      ["Manufacturer", "Nintendo"],
+      ["Capacity", "32 GB"],
+      ["Compatible Games", "Nintendo Switch"],
+      ["Colour", "Turquoise"],
+      ["Width", "20.32 cm"],
+      ["Height", "10.66 cm"],
+      ["Depth", "7.87 cm"],
+      ["Weight", "0.45 kg"]
+    ]
+  },
+  {
+    "name": "Nintendo Switch Lite",
+    "description": "Nintendo Switch Lite is a Nintendo Switch system that's optimized for personal, handheld play. It has a built-in +Control Pad and a sleek, unibody design, making it perfect for on-the-go gaming. Plus, it's compatible with games like Super Smash Bros. Ultimate, Super Mario Odyssey, The Legend of Zelda: Breath of the Wild, and more, so you can play your favourites anytime, anyplace.",
+    "price": 259.99,
+    "stock_quantity": 2,
+    "discount": 0,
+    "category": "Video Game Consoles",
+    "details": [
+      ["Manufacturer", "Nintendo"],
+      ["Capacity", "32 GB"],
+      ["Compatible Games", "Nintendo Switch"],
+      ["Colour", "Yellow"],
+      ["Width", "20.32 cm"],
+      ["Height", "10.66 cm"],
+      ["Depth", "7.87 cm"],
+      ["Weight", "0.45 kg"]
+    ]
+  },
+  {
+    "name": "Nintendo Switch Lite",
+    "description": "Nintendo Switch Lite is a Nintendo Switch system that's optimized for personal, handheld play. It has a built-in +Control Pad and a sleek, unibody design, making it perfect for on-the-go gaming. Plus, it's compatible with games like Super Smash Bros. Ultimate, Super Mario Odyssey, The Legend of Zelda: Breath of the Wild, and more, so you can play your favourites anytime, anyplace.",
+    "price": 259.99,
+    "stock_quantity": 5,
+    "discount": 0,
+    "category": "Video Game Consoles",
+    "details": [
+      ["Manufacturer", "Nintendo"],
+      ["Capacity", "32 GB"],
+      ["Compatible Games", "Nintendo Switch"],
+      ["Colour", "Red"],
+      ["Width", "20.32 cm"],
+      ["Height", "10.66 cm"],
+      ["Depth", "7.87 cm"],
+      ["Weight", "0.45 kg"]
+    ]
+  },
+  {
+    "name": "Nintendo Switch Lite",
+    "description": "Nintendo Switch Lite is a Nintendo Switch system that's optimized for personal, handheld play. It has a built-in +Control Pad and a sleek, unibody design, making it perfect for on-the-go gaming. Plus, it's compatible with games like Super Smash Bros. Ultimate, Super Mario Odyssey, The Legend of Zelda: Breath of the Wild, and more, so you can play your favourites anytime, anyplace.",
+    "price": 259.99,
+    "stock_quantity": 23,
+    "discount": 0,
+    "category": "Video Game Consoles",
+    "details": [
+      ["Manufacturer", "Nintendo"],
+      ["Capacity", "32 GB"],
+      ["Compatible Games", "Nintendo Switch"],
+      ["Colour", "Grey"],
+      ["Width", "20.32 cm"],
+      ["Height", "10.66 cm"],
+      ["Depth", "7.87 cm"],
+      ["Weight", "0.45 kg"]
+    ]
+  },
+  {
+    "name": "DualShock 4",
+    "description": "The DualShock 4 Wireless Controller features the familiar Playstation controls but brings new ways to interact with games and players. The dual analog sticks and trigger buttons are ergonomically designed to give you a greater sense of control, the dual vibration motors put you right in the game, and the capacitive touch pad gives you new ways to control your games.",
+    "price": 74.99,
+    "stock_quantity": 13,
+    "discount": 0,
+    "category": "Video Game Accessories",
+    "details": [
+      ["Manufacturer", "Sony"],
+      ["Platform", "PlayStation 4"],
+      ["Type", "Controller"],
+      ["Material", "Plastic"],
+      ["Colour", "Jet Black"]
+    ]
+  },
+  {
+    "name": "DualShock 4",
+    "description": "The DualShock 4 Wireless Controller features the familiar Playstation controls but brings new ways to interact with games and players. The dual analog sticks and trigger buttons are ergonomically designed to give you a greater sense of control, the dual vibration motors put you right in the game, and the capacitive touch pad gives you new ways to control your games.",
+    "price": 74.99,
+    "stock_quantity": 9,
+    "discount": 0,
+    "category": "Video Game Accessories",
+    "details": [
+      ["Manufacturer", "Sony"],
+      ["Platform", "PlayStation 4"],
+      ["Type", "Controller"],
+      ["Material", "Plastic"],
+      ["Colour", "Camo"]
+    ]
+  },
+  {
+    "name": "DualShock 4",
+    "description": "The DualShock 4 Wireless Controller features the familiar Playstation controls but brings new ways to interact with games and players. The dual analog sticks and trigger buttons are ergonomically designed to give you a greater sense of control, the dual vibration motors put you right in the game, and the capacitive touch pad gives you new ways to control your games.",
+    "price": 74.99,
+    "stock_quantity": 21,
+    "discount": 0,
+    "category": "Video Game Accessories",
+    "details": [
+      ["Manufacturer", "Sony"],
+      ["Platform", "PlayStation 4"],
+      ["Type", "Controller"],
+      ["Material", "Plastic"],
+      ["Colour", "Berry Blue"]
+    ]
+  },
+  {
+    "name": "PlayStation Camera",
+    "description": "Take control of your gaming experience with the PlayStation Camera. Paired with PlayStation VR or the PlayStation 4 (sold separately) it uses 3D depth-sensing technology to track your controller and your body position in the room. Games adapt to your presence accordingly and actions are precisely captured and reflected in-game.",
+    "price": 74.99,
+    "stock_quantity": 10,
+    "discount": 0,
+    "category": "Video Game Accessories",
+    "details": [
+      ["Manufacturer", "Sony"],
+      ["Platform", "PlayStation 4"],
+      ["Type", "Camera"],
+      ["Material", "Plastic"],
+      ["Colour", "Black"]
+    ]
+  },
+  {
+    "name": "Xbox One Wireless Controller",
+    "description": "Take control of your gaming. The enhanced Xbox Wireless Controller features an improved wireless range, a sleeker and more streamlined design, textured grips, and custom button mapping -- so you can tailor the controller to your own particular set of skills. It also features Bluetooth, so you can use it with Windows 10 PCs, tablets, and smartphones.",
+    "price": 74.99,
+    "stock_quantity": 11,
+    "discount": 0,
+    "category": "Video Game Accessories",
+    "details": [
+      ["Manufacturer", "Microsoft"],
+      ["Platform", "Xbox One"],
+      ["Type", "Controller"],
+      ["Material", "Plastic"],
+      ["Colour", "Grey/Blue"]
+    ]
+  },
+  {
+    "name": "Xbox One Wireless Controller",
+    "description": "Take control of your gaming. The enhanced Xbox Wireless Controller features an improved wireless range, a sleeker and more streamlined design, textured grips, and custom button mapping -- so you can tailor the controller to your own particular set of skills. It also features Bluetooth, so you can use it with Windows 10 PCs, tablets, and smartphones.",
+    "price": 74.99,
+    "stock_quantity": 17,
+    "discount": 0,
+    "category": "Video Game Accessories",
+    "details": [
+      ["Manufacturer", "Microsoft"],
+      ["Platform", "Xbox One"],
+      ["Type", "Controller"],
+      ["Material", "Plastic"],
+      ["Colour", "Red"]
+    ]
+  },
+  {
+    "name": "Xbox One Wireless Controller",
+    "description": "Take control of your gaming. The enhanced Xbox Wireless Controller features an improved wireless range, a sleeker and more streamlined design, textured grips, and custom button mapping -- so you can tailor the controller to your own particular set of skills. It also features Bluetooth, so you can use it with Windows 10 PCs, tablets, and smartphones.",
+    "price": 74.99,
+    "stock_quantity": 7,
+    "discount": 0,
+    "category": "Video Game Accessories",
+    "details": [
+      ["Manufacturer", "Microsoft"],
+      ["Platform", "Xbox One"],
+      ["Type", "Controller"],
+      ["Material", "Plastic"],
+      ["Colour", "Phantom Magenta"]
+    ]
+  },
+  {
+    "name": "Nintendo Switch Left and Right Joy-cons",
+    "description": "Welcome to a whole new way to game, with Joy-Con controllers for the Nintendo Switch system. Designed for at home or on-the-go gaming, these controllers make it easy to bring your games with you anywhere you go. Use them independently in each hand, or together as one game controller by attaching them to the Joy-Con grip.",
+    "price": 99.99,
+    "stock_quantity": 1,
+    "discount": 0,
+    "category": "Video Game Accessories",
+    "details": [
+      ["Manufacturer", "Nintendo"],
+      ["Platform", "Nintendo Switch"],
+      ["Type", "Controller"],
+      ["Material", "Plastic"],
+      ["Colour", "Neon Purple/Neon Orange"]
+    ]
+  },
+  {
+    "name": "Nintendo Switch Left and Right Joy-cons",
+    "description": "Welcome to a whole new way to game, with Joy-Con controllers for the Nintendo Switch system. Designed for at home or on-the-go gaming, these controllers make it easy to bring your games with you anywhere you go. Use them independently in each hand, or together as one game controller by attaching them to the Joy-Con grip.",
+    "price": 99.99,
+    "stock_quantity": 11,
+    "discount": 0,
+    "category": "Video Game Accessories",
+    "details": [
+      ["Manufacturer", "Nintendo"],
+      ["Platform", "Nintendo Switch"],
+      ["Type", "Controller"],
+      ["Material", "Plastic"],
+      ["Colour", "Blue/Neon Yellow"]
+    ]
+  },
+  {
+    "name": "Nintendo Switch Left and Right Joy-cons",
+    "description": "Welcome to a whole new way to game, with Joy-Con controllers for the Nintendo Switch system. Designed for at home or on-the-go gaming, these controllers make it easy to bring your games with you anywhere you go. Use them independently in each hand, or together as one game controller by attaching them to the Joy-Con grip.",
+    "price": 99.99,
+    "stock_quantity": 22,
+    "discount": 0,
+    "category": "Video Game Accessories",
+    "details": [
+      ["Manufacturer", "Nintendo"],
+      ["Platform", "Nintendo Switch"],
+      ["Type", "Controller"],
+      ["Material", "Plastic"],
+      ["Colour", "Grey"]
+    ]
+  },
+  {
+    "name": "Nintendo Switch Pro Controller",
+    "description": "Whether you're a hardcore gamer or just crave the nostalgia of an old school controller, the Switch Pro Controller meets all your needs. Dual analog sticks help you produce precise onscreen movements and an ergonomic button layout enables more comfortable gaming. A long-lasting rechargeable battery provides hours of gameplay on a single charge.",
+    "price": 89.99,
+    "stock_quantity": 32,
+    "discount": 0,
+    "category": "Video Game Accessories",
+    "details": [
+      ["Manufacturer", "Nintendo"],
+      ["Platform", "Nintendo Switch"],
+      ["Type", "Controller"],
+      ["Material", "Plastic"],
+      ["Colour", "Grey"]
     ]
   }
 ]
