@@ -1,0 +1,43 @@
+[
+  {
+    "name": "PlayStation 4",
+    "description": "Sony's 4th console",
+    "price": 299.99,
+    "stock_quantity": 17,
+    "discount": 0,
+    "category": "Video Game Consoles",
+    "details": [
+      ["Height", "13 Inches"],
+      ["Width", "10 Inches"],
+      ["Depth", "4 Inches"],
+      ["Manufacturer", "Sony"]
+    ]
+  },
+  {
+    "name": "Nintendo Switch",
+    "description": "DS Deluxe",
+    "price": 399.99,
+    "stock_quantity": 7,
+    "discount": 10,
+    "category": "Video Game Consoles",
+    "details": [
+      ["Height", "5 Inches"],
+      ["Width", "12 Inches"],
+      ["Depth", "2 Inches"],
+      ["Manufacturer", "Nintendo"]
+    ]
+  },
+  {
+    "name": "Watch Dogs",
+    "description": "Hackerman",
+    "price": 29.99,
+    "stock_quantity": 42,
+    "discount": 0,
+    "category": "Video Games",
+    "details": [
+      ["Publisher", "Ubisoft"],
+      ["Console", "PlayStation 4"],
+      ["Console", "XBox One"]
+    ]
+  }
+]

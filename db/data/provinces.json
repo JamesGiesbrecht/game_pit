@@ -1,0 +1,94 @@
+[
+  {
+    "name": "Alberta",
+    "salesTax": {
+      "type": null,
+      "GST": 5
+    }
+  },
+  {
+    "name": "British Columbia",
+    "salesTax": {
+      "type": "PST",
+      "PST": 7,
+      "GST": 5
+    }
+  },
+  {
+    "name": "Manitoba",
+    "salesTax": {
+      "type": "PST",
+      "PST": 7,
+      "GST": 5
+    }
+  },
+  {
+    "name": "New Brunswick",
+    "salesTax": {
+      "type": "HST",
+      "HST": 15
+    }
+  },
+  {
+    "name": "Newfoundland and Labrador",
+    "salesTax": {
+      "type": "HST",
+      "HST": 15
+    }
+  },
+  {
+    "name": "Northwest Territories",
+    "salesTax": {
+      "GST": 5
+    }
+  },
+  {
+    "name": "Nova Scotia",
+    "salesTax": {
+      "type": "HST",
+      "HST": 15
+    }
+  },
+  {
+    "name": "Nunavut",
+    "salesTax": {
+      "GST": 5
+    }
+  },
+  {
+    "name": "Ontario",
+    "salesTax": {
+      "type": "HST",
+      "HST": 13
+    }
+  },
+  {
+    "name": "Prince Edward Island",
+    "salesTax": {
+      "type": "HST",
+      "HST": 15
+    }
+  },
+  {
+    "name": "Quebec",
+    "salesTax": {
+      "type": "QST",
+      "QST": 9.975,
+      "GST": 5
+    }
+  },
+  {
+    "name": "Saskatchewan",
+    "salesTax": {
+      "type": "PST",
+      "PST": 6,
+      "GST": 5
+    }
+  },
+  {
+    "name": "Yukon",
+    "salesTax": {
+      "GST": 5
+    }
+  }
+]
