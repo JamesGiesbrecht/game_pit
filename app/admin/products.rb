@@ -5,7 +5,27 @@ ActiveAdmin.register Product do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :description, :category_id, :price, :stock_quantity, :discount
+  permit_params :name, :description, :category_id, :price, :stock_quantity, :discount, :image
+
+  form do |f|
+    f.semantic_errors # shows errors on :base
+    f.inputs # builds an input field for every attribute
+    # start custom section
+    f.inputs do
+      f.input :image, as: :file # adding image file upload
+    end
+    # end custom section
+    f.actions # adds the 'Submit' and 'Cancel' buttons
+  end
+
+  show do
+    attributes_table do
+      row :title
+      row :image do |ad|
+        image_tag url_for(ad.image) if ad.image.attached?
+      end
+    end
+  end
   #
   # or
   #
