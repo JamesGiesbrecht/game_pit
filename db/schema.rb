@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2020_11_05_000814) do
     t.string "name"
     t.text "description"
     t.integer "category_id", null: false
-    t.decimal "price"
+    t.decimal "price", precision: 8, scale: 2
     t.integer "stock_quantity"
     t.decimal "discount"
     t.datetime "created_at", precision: 6, null: false
