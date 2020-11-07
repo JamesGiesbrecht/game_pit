@@ -10,17 +10,17 @@ const run = async () => {
   const videoGamesConverted = await csv().fromFile(videoGamesCsvPath)
   const platforms = ['PS4', 'XOne', 'NS']
   videoGamesConverted.forEach((vg) => {
-    if (platforms.includes(vg.Platform)) {
+    if (platforms.includes(vg.Platform) && vg.Global_Sales >= 0.1) {
       let platform
       switch (vg.Platform) {
         case 'NS':
           platform = 'Nintendo Switch'
           break
         case 'PS4':
-          platform = 'Playstation 4'
+          platform = 'PlayStation 4'
           break
         case 'XOne':
-          platform = 'XBox One'
+          platform = 'Xbox One'
           break
         default:
           platform = vg.Platform
