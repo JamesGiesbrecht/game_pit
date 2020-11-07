@@ -13,6 +13,15 @@ Address.destroy_all
 Customer.destroy_all
 Province.destroy_all
 TaxType.destroy_all
+AdminUser.destroy_all
+
+# if Rails.env.development?
+  AdminUser.create!(
+    email:                 "admin@example.com",
+    password:              "password",
+    password_confirmation: "password"
+  )
+# end
 
 products = JSON.parse(File.read(Rails.root.join("db/data/products.json")))
 tax_types = JSON.parse(File.read(Rails.root.join("db/data/tax_types.json")))
@@ -22,10 +31,11 @@ customers = JSON.parse(File.read(Rails.root.join("db/data/customers.json")))
 video_games = JSON.parse(File.read(Rails.root.join("db/data/video_games.json")))
 
 def add_detail(product, detail, value)
+  detail_type = Detail.find_or_create_by(name: detail)
   ProductDetail.create(
     product: product,
-    detail: Detail.find_or_create_by(name: detail),
-    value: value
+    detail:  detail_type,
+    value:   value
   )
 end
 
@@ -41,7 +51,7 @@ products.each do |p|
     category:       category
   )
   p["details"].each do |d|
-    add_detail(product, Detail.find_or_create_by(name: d[0]), d[1])
+    add_detail(product, d[0], d[1])
   end
   product.save
 end
@@ -69,9 +79,9 @@ video_games.each_with_index do |v, index|
   game = Product.new(
     name:           v["name"],
     description:    "#{v['platform']} game developed by #{v['developer']}",
-    price:          Faker::Number.between(from: price_range[0], to: price_range[1]) / 100,
+    price:          (Faker::Number.between(from: price_range[0], to: price_range[1]).to_f / 100).round(2),
     stock_quantity: Faker::Number.between(from: 0, to: 50),
-    discount:       rand >= 0.9 ? Faker::Number.between(from: 5, to: 50).to_f / 100 : 0,
+    discount:       rand >= 0.9 ? (Faker::Number.between(from: 5, to: 50).to_f / 100).round(2) : 0,
     category:       video_games_cat
   )
   add_detail(game, "Genre", v["genre"])
