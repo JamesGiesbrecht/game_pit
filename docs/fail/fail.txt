@@ -1,0 +1,7 @@
+https://stackoverflow.com/questions/56493268/how-to-sort-a-custom-column-in-activeadmin
+https://medium.com/@maris.cilitis/using-ruby-on-rails-active-storage-image-uploads-for-active-admin-backed-resources-5638a9ca0b46
+https://stackoverflow.com/questions/14414563/how-to-customize-one-column-and-display-remaining-in-activeadmin
+https://stackoverflow.com/questions/11598116/activeadmin-display-default-view-content
+https://stackoverflow.com/questions/15799566/how-do-add-a-link-to-an-activeadmin-view
+https://stackoverflow.com/questions/19809597/activeadmin-show-edit-and-delete-actions-in-custom-models
+https://stackoverflow.com/questions/62282679/how-to-make-a-column-sortable-in-dashboard-in-activeadmin

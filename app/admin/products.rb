@@ -7,6 +7,27 @@ ActiveAdmin.register Product do
   #
   permit_params :name, :description, :category_id, :price, :stock_quantity, :discount, :image
 
+  index do
+    # columns_to_exclude = ["id"]
+    selectable_column
+    id_column
+    # (Product.column_names - columns_to_exclude).each do |c|
+    #   column c.to_sym
+    # end
+    column :name
+    column :description
+    column "Category", sortable: true do |c|
+      link_to c.category.name, [:admin, c.category]
+    end
+    column :price
+    column :stock_quantity
+    column :discount
+    column "Image" do |product|
+      image_tag url_for(product.image), class: 'aa_image' if product.image.attached?
+    end
+    actions
+  end
+
   form do |f|
     f.semantic_errors # shows errors on :base
     f.inputs # builds an input field for every attribute
