@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
   # GET /products.json
   def index
-    @products = Product.includes(:category, product_details: [:detail]).all
+    @products = Product.includes(:category, product_details: [:detail]).all.with_attached_image
   end
 
   # GET /products/1.json
