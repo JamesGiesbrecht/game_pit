@@ -51,9 +51,13 @@ products.each do |p|
     discount:       p["discount"],
     category:       category
   )
+  color = ""
   p["details"].each do |d|
+    color = d[1] if d[0] === "Colour"
     add_detail(product, d[0], d[1])
   end
+  image = open("data/images/#{p['imgUrl']}")
+  product.image.attach(io: image, filename: "#{product['name'].gsub(' ', '_')}_#{color.gsub(' ', '_')}")
   product.save
 end
 
