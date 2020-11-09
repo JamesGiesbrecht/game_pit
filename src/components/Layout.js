@@ -3,16 +3,21 @@ import { Grid, Layout, Menu, Breadcrumb, Image } from 'antd'
 import wideLogo from 'assets/img/logo_wide.png'
 
 const { useBreakpoint } = Grid
-
+const { Header, Content, Footer } = Layout
 
 const MyLayout = ({ children }) => {
-  const { Header, Content, Footer } = Layout
   const [breadcrumbs, setBreadcrumbs] = useState(['Home'])
-  const crumbs = breadcrumbs.map((bc) => <Breadcrumb.Item>{bc}</Breadcrumb.Item>)
-  const childrenWithProps = Children.map(children, (child) => (
-    cloneElement(child, { setBreadcrumbs })
-  ))
+  const [shoppingCart, setShoppingCart] = useState([])
+
+  const crumbs = breadcrumbs.map((bc) => <Breadcrumb.Item key={bc}>{bc}</Breadcrumb.Item>)
   const contentPadding = !useBreakpoint().xs ? '0 40px' : '0'
+
+  const addItemToShoppingCart = (product) => setShoppingCart((prev) => [...prev, product])
+
+  const childrenWithProps = Children.map(children, (child) => (
+    cloneElement(child, { setBreadcrumbs, addItemToShoppingCart, shoppingCart })
+  ))
+
   return (
     <Layout className="layout">
       <Header className="header">

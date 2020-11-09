@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Col, Row, Spin } from 'antd'
 import Product from './Product'
 
-const Products = () => {
+const Products = ({ shoppingCart, addItemToShoppingCart }) => {
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -22,13 +22,18 @@ const Products = () => {
 
   const prods = products.slice(0, 30).map((p) => (
     <Col
+      key={p.id}
       xs={24}
       sm={12}
       md={8}
       lg={6}
       xxl={4}
     >
-      <Product product={p} />
+      <Product
+        product={p}
+        shoppingCart={shoppingCart}
+        addItemToShoppingCart={addItemToShoppingCart}
+      />
     </Col>
   ))
 
