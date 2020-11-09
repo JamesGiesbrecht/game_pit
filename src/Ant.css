@@ -1,0 +1,10 @@
+/* Modifications to the Ant D classes go here */
+.ant-card-cover {
+  height: 300px;
+}
+
+.ant-card-cover img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}

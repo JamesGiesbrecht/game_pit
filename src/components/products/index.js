@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Col, Row, Grid, Spin } from 'antd'
+import { Col, Row, Spin } from 'antd'
 import Product from './Product'
-
-const { useBreakpoint } = Grid
 
 const Products = () => {
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  console.log(useBreakpoint())
+
   useEffect(() => {
     setIsLoading(true)
     axios.get('/products.json')
@@ -22,11 +20,21 @@ const Products = () => {
       .finally(() => setIsLoading(false))
   }, [])
 
-  const prods = products.slice(0, 30).map((p) => <Col span={6}><Product product={p} /></Col>)
+  const prods = products.slice(0, 30).map((p) => (
+    <Col
+      xs={24}
+      sm={12}
+      md={8}
+      lg={6}
+      xxl={4}
+    >
+      <Product product={p} />
+    </Col>
+  ))
 
   return (
     <div>
-      <Row gutter={[8, 8]}>
+      <Row gutter={[24, 24]}>
         {prods}
         {isLoading && <Spin />}
       </Row>

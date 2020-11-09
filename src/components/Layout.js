@@ -1,6 +1,9 @@
 import React, { useState, Children, cloneElement } from 'react'
-import { Layout, Menu, Breadcrumb, Image } from 'antd'
+import { Grid, Layout, Menu, Breadcrumb, Image } from 'antd'
 import wideLogo from 'assets/img/logo_wide.png'
+
+const { useBreakpoint } = Grid
+
 
 const MyLayout = ({ children }) => {
   const { Header, Content, Footer } = Layout
@@ -9,7 +12,7 @@ const MyLayout = ({ children }) => {
   const childrenWithProps = Children.map(children, (child) => (
     cloneElement(child, { setBreadcrumbs })
   ))
-
+  const contentPadding = !useBreakpoint().xs ? '0 40px' : '0'
   return (
     <Layout className="layout">
       <Header className="header">
@@ -20,7 +23,7 @@ const MyLayout = ({ children }) => {
           <Menu.Item key="3">nav 3</Menu.Item>
         </Menu>
       </Header>
-      <Content style={{ padding: '0 50px' }} className="all-content">
+      <Content style={{ padding: contentPadding }} className="all-content">
         {crumbs.length > 0 && (
           <Breadcrumb style={{ margin: '16px 0' }}>
             {crumbs}

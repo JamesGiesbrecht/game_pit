@@ -15,7 +15,7 @@ const Product = ({ product }) => {
   }
   return (
     <Card
-      style={{ width: 300 }}
+      className="product-card"
       cover={(
         <img
           alt={product.name}
