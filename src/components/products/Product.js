@@ -1,18 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Card, message, Space, Typography } from 'antd'
-import { PlusOutlined, CheckOutlined, CheckCircleOutlined, StopOutlined } from '@ant-design/icons'
+import { PlusOutlined, CheckOutlined, CheckCircleOutlined, StopOutlined, LoadingOutlined } from '@ant-design/icons'
 
 const { Meta } = Card
 const { Text } = Typography
 
 const Product = ({ product, shoppingCart, addItemToShoppingCart }) => {
+  const [addToCartLoading, setAddToCartLoading] = useState(false)
   const inCart = shoppingCart.some((cartItem) => cartItem.id === product.id)
   const hasDiscount = product.discount > 0
   const inStock = product.stock_quantity > 0
 
   const addToCart = () => {
-    addItemToShoppingCart(product)
-    message.success(`${product.name} added to cart`)
+    setAddToCartLoading(true)
+    setTimeout(() => {
+      addItemToShoppingCart(product)
+      message.success(`${product.name} added to cart`)
+      setAddToCartLoading(false)
+    }, 500)
   }
 
   const description = (() => {
@@ -29,7 +34,7 @@ const Product = ({ product, shoppingCart, addItemToShoppingCart }) => {
       return (
         <Space direction="vertical" className="">
           <div>
-            <Text type={inCart ? 'warning' : 'danger'} delete>{`$${p}`}</Text>
+            <Text type="danger" delete>{`$${p}`}</Text>
             <Text type="danger" strong>{` $${(p - p * product.discount).toFixed(2)}`}</Text>
           </div>
           <Text type="danger">{`Save ${product.discount * 100}%`}</Text>
@@ -41,9 +46,17 @@ const Product = ({ product, shoppingCart, addItemToShoppingCart }) => {
 
   const addToCartInStock = (() => {
     if (inStock) {
+      let addToCartIcon
+      if (addToCartLoading) {
+        addToCartIcon = <LoadingOutlined />
+      } else if (inCart) {
+        addToCartIcon = <CheckCircleOutlined style={{ color: 'green' }} />
+      } else {
+        addToCartIcon = <PlusOutlined onClick={addToCart} />
+      }
       return (
         <div className="product-desc">
-          {inCart ? <CheckCircleOutlined style={{ color: 'green' }} /> : <PlusOutlined onClick={addToCart} />}
+          {addToCartIcon}
           <span style={{ color: 'green' }}>
             <CheckOutlined />
             {' In Stock'}
