@@ -1,9 +1,11 @@
 import React from 'react'
 import { Button } from 'antd'
+import Layout from 'components/Layout'
+import 'App.css'
 
 function App() {
   return (
-    <>
+    <Layout>
       <Button
         type="primary"
         href="https://reactjs.org"
@@ -12,7 +14,7 @@ function App() {
       >
         Learn React
       </Button>
-    </>
+    </Layout>
   )
 }
 
