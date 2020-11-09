@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState, Children, cloneElement } from 'react'
 import { Layout, Menu, Breadcrumb, Image } from 'antd'
 import wideLogo from 'assets/img/logo_wide.png'
 
-const MyLayout = ({ children, breadcrumbs = ['Home', 'Shop', 'Games'] }) => {
+const MyLayout = ({ children }) => {
   const { Header, Content, Footer } = Layout
+  const [breadcrumbs, setBreadcrumbs] = useState(['Home'])
   const crumbs = breadcrumbs.map((bc) => <Breadcrumb.Item>{bc}</Breadcrumb.Item>)
+  const childrenWithProps = Children.map(children, (child) => (
+    cloneElement(child, { setBreadcrumbs })
+  ))
 
   return (
     <Layout className="layout">
@@ -16,14 +20,14 @@ const MyLayout = ({ children, breadcrumbs = ['Home', 'Shop', 'Games'] }) => {
           <Menu.Item key="3">nav 3</Menu.Item>
         </Menu>
       </Header>
-      <Content style={{ padding: '0 50px' }}>
+      <Content style={{ padding: '0 50px' }} className="all-content">
         {crumbs.length > 0 && (
           <Breadcrumb style={{ margin: '16px 0' }}>
             {crumbs}
           </Breadcrumb>
         )}
-        <div className="site-layout-content">
-          {children}
+        <div className="main-content">
+          {childrenWithProps}
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>Game Pit ©2020</Footer>

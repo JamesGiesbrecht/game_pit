@@ -1,21 +1,12 @@
 import React from 'react'
-import { Button } from 'antd'
 import Layout from 'components/Layout'
 import 'App.css'
+import Products from 'components/products'
 
-function App() {
-  return (
-    <Layout>
-      <Button
-        type="primary"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </Button>
-    </Layout>
-  )
-}
+const App = () => (
+  <Layout>
+    <Products />
+  </Layout>
+)
 
 export default App
