@@ -1,6 +1,6 @@
 import React, { useState, Children, cloneElement } from 'react'
 import { Grid, Layout, Menu, Breadcrumb, Image } from 'antd'
-import wideLogo from 'assets/img/logo_wide.png'
+import wideLogo from 'assets/img/logo-blue.png'
 
 const { useBreakpoint } = Grid
 const { Header, Content, Footer } = Layout
