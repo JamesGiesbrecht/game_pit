@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Space, Typography } from 'antd'
+import { Card, message, Space, Typography } from 'antd'
 import { PlusOutlined, CheckOutlined, CheckCircleOutlined, StopOutlined } from '@ant-design/icons'
 
 const { Meta } = Card
@@ -9,6 +9,11 @@ const Product = ({ product, shoppingCart, addItemToShoppingCart }) => {
   const inCart = shoppingCart.some((cartItem) => cartItem.id === product.id)
   const hasDiscount = product.discount > 0
   const inStock = product.stock_quantity > 0
+
+  const addToCart = () => {
+    addItemToShoppingCart(product)
+    message.success(`${product.name} added to cart`)
+  }
 
   const description = (() => {
     const d = product.details
@@ -38,7 +43,7 @@ const Product = ({ product, shoppingCart, addItemToShoppingCart }) => {
     if (inStock) {
       return (
         <div className="product-desc">
-          {inCart ? <CheckCircleOutlined style={{ color: 'green' }} /> : <PlusOutlined onClick={() => addItemToShoppingCart(product)} />}
+          {inCart ? <CheckCircleOutlined style={{ color: 'green' }} /> : <PlusOutlined onClick={addToCart} />}
           <span style={{ color: 'green' }}>
             <CheckOutlined />
             {' In Stock'}
