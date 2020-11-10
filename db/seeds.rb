@@ -24,11 +24,11 @@ AdminUser.destroy_all
   )
 # end
 
-products = JSON.parse(File.read(Rails.root.join("db/data/products.json")))
+products = JSON.parse(File.read(Rails.root.join("db/data/scripts/bb.json")))
 tax_types = JSON.parse(File.read(Rails.root.join("db/data/tax_types.json")))
 order_statuses = JSON.parse(File.read(Rails.root.join("db/data/order_statuses.json")))
 provinces = JSON.parse(File.read(Rails.root.join("db/data/provinces.json")))
-customers = JSON.parse(File.read(Rails.root.join("db/data/customers.json")))
+# customers = JSON.parse(File.read(Rails.root.join("db/data/customers.json")))
 video_games = JSON.parse(File.read(Rails.root.join("db/data/video_games.json")))
 
 def add_detail(product, detail, value)
@@ -41,14 +41,38 @@ def add_detail(product, detail, value)
 end
 
 # Controllers/Consoles from JSON
-products.each do |p|
+# products.each do |p|
+#   category = Category.find_or_create_by(name: p["category"])
+#   product = Product.new(
+#     name:           p["name"],
+#     description:    p["description"],
+#     price:          p["price"],
+#     stock_quantity: p["stock_quantity"],
+#     discount:       p["discount"],
+#     category:       category
+#   )
+#   color = ""
+#   p["details"].each do |d|
+#     color = d[1] if d[0] === "Colour"
+#     add_detail(product, d[0], d[1])
+#   end
+#   image = open("data/images/#{p['imgUrl']}")
+#   product.image.attach(io: image, filename: "#{product['name'].gsub(' ', '_')}_#{color.gsub(' ', '_')}")
+#   product.save
+# end
+
+products_count = products.count
+
+# Importing Products scraped from best buy
+products.each_with_index do |p, index|
+  puts "Seeding Product #{index + 1} of #{products_count} - #{p['name']}"
   category = Category.find_or_create_by(name: p["category"])
   product = Product.new(
     name:           p["name"],
     description:    p["description"],
     price:          p["price"],
-    stock_quantity: p["stock_quantity"],
-    discount:       p["discount"],
+    stock_quantity: Faker::Number.between(from: 0, to: 30),
+    discount:       rand >= 0.9 ? (Faker::Number.between(from: 5, to: 50).to_f / 100).round(2) : 0,
     category:       category
   )
   color = ""
@@ -56,7 +80,7 @@ products.each do |p|
     color = d[1] if d[0] === "Colour"
     add_detail(product, d[0], d[1])
   end
-  image = open("data/images/#{p['imgUrl']}")
+  image = open(p["image"])
   product.image.attach(io: image, filename: "#{product['name'].gsub(' ', '_')}_#{color.gsub(' ', '_')}")
   product.save
 end
@@ -80,12 +104,12 @@ video_games.each_with_index do |v, index|
                 else
                   [1000, 5000]
                 end
-  puts "Seeding #{index + 1} of #{game_count}"
+  puts "Seeding Game #{index + 1} of #{game_count} - #{v['name']}"
   game = Product.new(
     name:           v["name"],
     description:    "#{v['platform']} game developed by #{v['developer']}",
     price:          (Faker::Number.between(from: price_range[0], to: price_range[1]).to_f / 100).round(2),
-    stock_quantity: Faker::Number.between(from: 0, to: 50),
+    stock_quantity: Faker::Number.between(from: 0, to: 30),
     discount:       rand >= 0.9 ? (Faker::Number.between(from: 5, to: 50).to_f / 100).round(2) : 0,
     category:       video_games_cat
   )
