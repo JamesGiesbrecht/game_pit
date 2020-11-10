@@ -1,7 +1,7 @@
 const fs = require('fs')
 const csv = require('csvtojson')
 
-const videoGamesCsvPath = __dirname + '/raw/vgsales-12-4-2019.csv'
+const videoGamesCsvPath = __dirname + '../raw/vgsales-12-4-2019.csv'
 const videoGames = []
 
 const checkForNull = (val) => val === '' ? null : val
