@@ -15,6 +15,7 @@ Customer.destroy_all
 Province.destroy_all
 TaxType.destroy_all
 AdminUser.destroy_all
+Page.destroy_all
 
 # if Rails.env.development?
   AdminUser.create!(
@@ -30,6 +31,7 @@ order_statuses = JSON.parse(File.read(Rails.root.join("db/data/order_statuses.js
 provinces = JSON.parse(File.read(Rails.root.join("db/data/provinces.json")))
 # customers = JSON.parse(File.read(Rails.root.join("db/data/customers.json")))
 video_games = JSON.parse(File.read(Rails.root.join("db/data/video_games.json")))
+pages = JSON.parse(File.read(Rails.root.join("db/data/pages.json")))
 
 def add_detail(product, detail, value)
   detail_type = Detail.find_or_create_by(name: detail)
@@ -37,6 +39,15 @@ def add_detail(product, detail, value)
     product: product,
     detail:  detail_type,
     value:   value
+  )
+end
+
+# Pages
+pages.each do |page|
+  Page.create(
+    title:     page["title"],
+    content:   page["content"],
+    permalink: page["permalink"]
   )
 end
 
