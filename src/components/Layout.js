@@ -1,14 +1,14 @@
-import React, { useState, useEffect, Children, cloneElement } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Grid, Layout, Menu, Breadcrumb, Image } from 'antd'
 import axios from 'axios'
 import wideLogo from 'assets/img/logo-blue.png'
+import { StoreContext } from 'context/StoreContext'
 
 const { useBreakpoint } = Grid
 const { Header, Content, Footer } = Layout
 
 const MyLayout = ({ children }) => {
-  const [breadcrumbs, setBreadcrumbs] = useState(['Home'])
-  const [shoppingCart, setShoppingCart] = useState([])
+  const { breadcrumbs } = useContext(StoreContext)
   const [pages, setPages] = useState([])
   const [navItems, setNavItems] = useState()
 
@@ -34,11 +34,6 @@ const MyLayout = ({ children }) => {
 
   const contentPadding = !useBreakpoint().xs ? '0 40px' : '0'
 
-  const addItemToShoppingCart = (product) => setShoppingCart((prev) => [...prev, product])
-
-  const childrenWithProps = Children.map(children, (child) => (
-    cloneElement(child, { setBreadcrumbs, addItemToShoppingCart, shoppingCart })
-  ))
   return (
     <Layout className="layout">
       <Header className="header">
@@ -54,7 +49,7 @@ const MyLayout = ({ children }) => {
           </Breadcrumb>
         )}
         <div className="main-content">
-          {childrenWithProps}
+          {children}
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>Game Pit ©2020</Footer>

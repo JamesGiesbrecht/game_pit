@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Card, message, Space, Typography } from 'antd'
 import { PlusOutlined, CheckOutlined, CheckCircleOutlined, StopOutlined, LoadingOutlined } from '@ant-design/icons'
+import { StoreContext } from 'context/StoreContext'
 
 const { Meta } = Card
 const { Text } = Typography
 
-const Product = ({ product, shoppingCart, addItemToShoppingCart }) => {
+const Product = ({ product }) => {
+  const { shoppingCart, addItemToShoppingCart } = useContext(StoreContext)
   const [addToCartLoading, setAddToCartLoading] = useState(false)
   const inCart = shoppingCart.some((cartItem) => cartItem.id === product.id)
   const hasDiscount = product.discount > 0
