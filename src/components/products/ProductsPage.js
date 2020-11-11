@@ -1,26 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { Col, Row, Spin } from 'antd'
+import React, { useState } from 'react'
+import { Col, Row, Pagination } from 'antd'
 import Product from './Product'
 
-const Products = () => {
-  const [products, setProducts] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    setIsLoading(true)
-    axios.get('/products.json')
-      .then((res) => {
-        console.log(res)
-        setProducts(res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-      .finally(() => setIsLoading(false))
-  }, [])
-
-  const prods = products.slice(0, 100).map((p) => (
+const Products = ({ products }) => {
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemsPerPage, setItemsPerPage] = useState(20)
+  const indexOfLastProduct = currentPage * itemsPerPage
+  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct).map((p) => (
     <Col
       key={p.id}
       xs={24}
@@ -35,12 +22,36 @@ const Products = () => {
     </Col>
   ))
 
+  const onShowSizeChange = (page, pageSize) => {
+    console.log(`Show Size Change: ${page}, ${pageSize}`)
+    setCurrentPage(page)
+    setItemsPerPage(pageSize)
+  }
+
+  const onPageChange = (page, pageSize) => {
+    console.log(`Page Change: ${page}, ${pageSize}`)
+    setCurrentPage(page)
+    setItemsPerPage(pageSize)
+  }
+
+  const pagination = (
+    <Pagination
+      showSizeChanger
+      onShowSizeChange={onShowSizeChange}
+      onChange={onPageChange}
+      pageSize={itemsPerPage}
+      current={currentPage}
+      total={products.length}
+    />
+  )
+
   return (
     <div>
+      {pagination}
       <Row gutter={[24, 24]}>
-        {prods}
-        {isLoading && <Spin />}
+        {currentProducts}
       </Row>
+      {pagination}
     </div>
   )
 }

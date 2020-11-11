@@ -16,3 +16,7 @@
 .ant-card-body > *:not(:first-child) {
   padding-top: 20px;
 }
+
+.ant-row {
+  margin-top: 12px!important;
+}

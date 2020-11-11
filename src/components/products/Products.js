@@ -1,0 +1,27 @@
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { Col, Row, Spin } from 'antd'
+import Product from './Product'
+import ProductsPage from './ProductsPage'
+
+const Products = () => {
+  const [products, setProducts] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    setIsLoading(true)
+    axios.get('/products.json')
+      .then((res) => {
+        console.log(res)
+        setProducts(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => setIsLoading(false))
+  }, [])
+
+  return isLoading ? <Spin /> : <ProductsPage products={products} />
+}
+
+export default Products
