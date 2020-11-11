@@ -3,6 +3,7 @@ import { Grid, Layout, Menu, Breadcrumb, Image } from 'antd'
 import axios from 'axios'
 import wideLogo from 'assets/img/logo-blue.png'
 import { StoreContext } from 'context/StoreContext'
+import { Link } from 'react-router-dom'
 
 const { useBreakpoint } = Grid
 const { Header, Content, Footer } = Layout
@@ -26,7 +27,10 @@ const MyLayout = ({ children }) => {
   useEffect(() => {
     const items = [
       // Add hardcoded links here
-    ].concat(pages.map((page) => <Menu.Item key={page.id}>{page.title}</Menu.Item>))
+      <Menu.Item key="Products"><Link to="/products">Products</Link></Menu.Item>,
+    ].concat(pages.map((page) => (
+      <Menu.Item key={page.id}><Link to={`/${page.permalink}`}>{page.title}</Link></Menu.Item>
+    )))
     setNavItems(items)
   }, [pages])
 

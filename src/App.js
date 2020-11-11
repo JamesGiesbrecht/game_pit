@@ -1,16 +1,20 @@
 import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Layout from 'components/Layout'
 import Products from 'components/products'
-import { BrowserRouter, Route } from 'react-router-dom'
+import Page from 'components/Page'
+import StoreProvider from 'context/StoreContext'
 import 'App.css'
 import 'Ant.css'
-import StoreProvider from 'context/StoreContext'
 
 const App = () => (
   <BrowserRouter>
     <StoreProvider>
       <Layout>
-        <Route path="/products" component={Products} />
+        <Switch>
+          <Route path="/products" component={Products} />
+          <Route path="/:permalink" component={Page} />
+        </Switch>
       </Layout>
     </StoreProvider>
   </BrowserRouter>
