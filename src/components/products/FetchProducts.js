@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Row, Spin } from 'antd'
-import ProductsPage from './ProductsPage'
+import ProductsCollection from './ProductsCollection'
 
 const Products = () => {
   const [products, setProducts] = useState([])
@@ -22,7 +22,7 @@ const Products = () => {
 
   const fullscreenSpinner = <Row justify="center" align="middle"><Spin size="large" /></Row>
 
-  return isLoading ? fullscreenSpinner : <ProductsPage products={products} />
+  return isLoading ? fullscreenSpinner : <ProductsCollection products={products} />
 }
 
 export default Products

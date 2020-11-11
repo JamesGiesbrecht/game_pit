@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Col, Row, Pagination, Select } from 'antd'
-import Product from './Product'
+import ProductCard from './ProductCard'
 
 const { Option } = Select
 
@@ -53,7 +53,7 @@ const Products = ({ products }) => {
       lg={6}
       xxl={4}
     >
-      <Product
+      <ProductCard
         product={p}
       />
     </Col>
