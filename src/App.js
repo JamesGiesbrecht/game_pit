@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Layout from 'components/Layout'
-import Products from 'components/products'
+import Products from 'components/products/ProductsPage'
 import Page from 'components/Page'
 import StoreProvider from 'context/StoreContext'
 import 'App.css'
