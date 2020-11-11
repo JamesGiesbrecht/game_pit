@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Card, message, Space, Typography } from 'antd'
 import { PlusOutlined, CheckOutlined, CheckCircleOutlined, StopOutlined, LoadingOutlined } from '@ant-design/icons'
 import { StoreContext } from 'context/StoreContext'
+import { Link } from 'react-router-dom'
 
 const { Meta } = Card
 const { Text } = Typography
@@ -80,17 +81,29 @@ const Product = ({ product }) => {
     <Card
       className="product-card"
       cover={(
-        <img
-          alt={product.name}
-          src={product.image}
-        />
+        <Link to={{
+          pathname: `/products/${product.name}`,
+          product,
+        }}
+        >
+          <img
+            alt={product.name}
+            src={product.thumbnail}
+          />
+        </Link>
       )}
     >
-      <Meta
-        title={product.name}
-        description={description}
-      />
-      {price}
+      <Link to={{
+        pathname: `/products/${product.id}`,
+        product,
+      }}
+      >
+        <Meta
+          title={product.name}
+          description={description}
+        />
+        {price}
+      </Link>
       {addToCartInStock}
     </Card>
   )

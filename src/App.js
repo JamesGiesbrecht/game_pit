@@ -6,12 +6,14 @@ import Page from 'components/Page'
 import StoreProvider from 'context/StoreContext'
 import 'App.css'
 import 'Ant.css'
+import ProductPage from 'components/products/ProductPage'
 
 const App = () => (
   <BrowserRouter>
     <StoreProvider>
       <Layout>
         <Switch>
+          <Route path="/products/:id" component={ProductPage} />
           <Route path="/products" component={FetchProducts} />
           <Route path="/:permalink" component={Page} />
         </Switch>
