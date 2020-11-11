@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Col, Row, Spin } from 'antd'
-import Product from './Product'
+import { Spin } from 'antd'
 import ProductsPage from './ProductsPage'
 
 const Products = () => {
