@@ -5,9 +5,9 @@ class PagesController < InheritedResources::Base
     @pages = Page.all
   end
 
-  # GET /page/1.json
+  # GET /page/contact.json
   def show
-    @page = Page.find(params[:id])
+    @page = Page.find_by permalink: params[:id]
   end
 
   private
