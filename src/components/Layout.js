@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Grid, Layout, Menu, Breadcrumb, Image } from 'antd'
+import { Grid, Layout, Menu, Breadcrumb, Image, Badge } from 'antd'
 import axios from 'axios'
 import wideLogo from 'assets/img/logo-blue.png'
 import { StoreContext } from 'context/StoreContext'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { ShoppingCartOutlined } from '@ant-design/icons'
 
 const { useBreakpoint } = Grid
 const { Header, Content, Footer } = Layout
 
 const MyLayout = ({ children }) => {
-  const { breadcrumbs } = useContext(StoreContext)
+  const { breadcrumbs, shoppingCart } = useContext(StoreContext)
   const [pages, setPages] = useState([])
-  const [navItems, setNavItems] = useState()
+  const location = useLocation()
+  const [currentNav, setCurrentNav] = useState(location.pathname.split('/')[1])
 
   useEffect(() => {
     axios.get('/pages.json')
@@ -24,15 +26,34 @@ const MyLayout = ({ children }) => {
       })
   }, [])
 
-  useEffect(() => {
-    const items = [
-      // Add hardcoded links here
-      <Menu.Item key="Products"><Link to="/products">Products</Link></Menu.Item>,
-    ].concat(pages.map((page) => (
-      <Menu.Item key={page.id}><Link to={`/${page.permalink}`}>{page.title}</Link></Menu.Item>
-    )))
-    setNavItems(items)
-  }, [pages])
+  const navItems = [
+    // Add hardcoded links here
+    <Menu.Item key="products">
+      <Link to="/products">Products</Link>
+    </Menu.Item>,
+    pages.map((page) => (
+      page && (
+        <Menu.Item key={page.permalink}>
+          <Link to={`/${page.permalink}`}>
+            {page.title}
+          </Link>
+        </Menu.Item>
+      )
+    )),
+    <Menu.Item key="cart">
+      <Link to="/cart">
+        <Badge
+          count={shoppingCart.length}
+          size="small"
+          offset={[-8, 4]}
+        >
+          <ShoppingCartOutlined style={{ fontSize: '2em' }} />
+        </Badge>
+      </Link>
+    </Menu.Item>,
+  ]
+
+  const handleMenuClick = (e) => setCurrentNav(e.key)
 
   const crumbs = breadcrumbs.map((bc) => <Breadcrumb.Item key={bc}>{bc}</Breadcrumb.Item>)
 
@@ -41,7 +62,12 @@ const MyLayout = ({ children }) => {
   return (
     <Layout className="layout">
       <Header className="header">
-        <Menu mode="horizontal" className="nav-menu">
+        <Menu
+          onClick={handleMenuClick}
+          selectedKeys={[currentNav]}
+          mode="horizontal"
+          className="nav-menu"
+        >
           <Image src={wideLogo} className="logo" />
           {navItems}
         </Menu>
