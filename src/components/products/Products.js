@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Spin } from 'antd'
+import { Row, Spin } from 'antd'
 import ProductsPage from './ProductsPage'
 
 const Products = () => {
@@ -20,7 +20,9 @@ const Products = () => {
       .finally(() => setIsLoading(false))
   }, [])
 
-  return isLoading ? <Spin /> : <ProductsPage products={products} />
+  const fullscreenSpinner = <Row justify="center" align="middle"><Spin size="large" /></Row>
+
+  return isLoading ? fullscreenSpinner : <ProductsPage products={products} />
 }
 
 export default Products
