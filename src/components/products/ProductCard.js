@@ -82,7 +82,7 @@ const Product = ({ product }) => {
       className="product-card"
       cover={(
         <Link to={{
-          pathname: `/products/${product.name}`,
+          pathname: `/products/${product.id}`,
           product,
         }}
         >
