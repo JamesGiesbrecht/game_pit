@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Col, Row, Pagination, Select } from 'antd'
+import { Col, Row, Pagination, Select, Checkbox, Input } from 'antd'
 import ProductCard from './ProductCard'
 
 const { Option } = Select
+const { Search } = Input
 
 const sorts = (() => {
   const priceAsc = (a, b) => {
@@ -40,10 +41,22 @@ const Products = ({ products }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(20)
   const [sort, setSort] = useState('default')
+  const [showSale, setShowSale] = useState(false)
+  const [search, setSearch] = useState('')
   const indexOfLastProduct = currentPage * itemsPerPage
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage
 
-  const sortedProducts = sorts[sort] ? [...products].sort(sorts[sort]) : products
+  const filteredProducts = [...products].filter((p) => {
+    const searchFilter = (() => {
+      if (p.name.toLowerCase().includes(search)) return true
+      return Object.keys(p.details).some((key) => {
+        const value = (p.details[key] || '').toLowerCase()
+        return value.includes(search)
+      })
+    })()
+    return showSale ? p.discount > 0 && searchFilter : searchFilter
+  })
+  const sortedProducts = sorts[sort] ? [...filteredProducts].sort(sorts[sort]) : filteredProducts
   const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct).map((p) => (
     <Col
       key={p.id}
@@ -69,6 +82,16 @@ const Products = ({ products }) => {
     setCurrentPage(1)
   }
 
+  const onSaleChange = (e) => {
+    setShowSale(e.target.checked)
+    setCurrentPage(1)
+  }
+
+  const onSearch = (e) => {
+    setSearch(e.target.value.toLowerCase())
+    setCurrentPage(1)
+  }
+
   const pagination = (
     <Pagination
       showSizeChanger
@@ -76,7 +99,7 @@ const Products = ({ products }) => {
       onChange={onPageChange}
       pageSize={itemsPerPage}
       current={currentPage}
-      total={products.length}
+      total={sortedProducts.length}
     />
   )
 
@@ -96,6 +119,8 @@ const Products = ({ products }) => {
       <Row justify="space-between">
         {pagination}
         {sortBy}
+        <Search placeholder="input search text" onChange={onSearch} enterButton />
+        <Checkbox onChange={onSaleChange}>Sale</Checkbox>
       </Row>
       <Row gutter={[24, 24]}>
         {currentProducts}
