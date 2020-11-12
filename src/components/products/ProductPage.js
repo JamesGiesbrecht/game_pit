@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import { Row, Col, Spin, Image, Space, Typography, Button, message } from 'antd'
+import { Row, Col, Spin, Image, Space, Typography, Button, Descriptions, message } from 'antd'
 import { useLocation, useParams } from 'react-router-dom'
 import { ShoppingCartOutlined, StopOutlined } from '@ant-design/icons'
 import { StoreContext } from 'context/StoreContext'
@@ -31,8 +31,11 @@ const ProductPage = () => {
     message.success(`${prod.name} added to cart`)
   }
 
+  const toSentenceCase = (value) => {
+    return value.split('_').map((word) => `${word.charAt(0).toUpperCase() + word.slice(1)} `)
+  }
+
   if (prod) {
-    console.log(prod)
     const hasDiscount = prod.discount > 0
     const inStock = prod.stock_quantity > 0
     const price = (() => {
@@ -60,7 +63,7 @@ const ProductPage = () => {
       </Text>
     )
 
-    const page = (
+    return (
       <>
         <Row
           gutter={20}
@@ -89,9 +92,17 @@ const ProductPage = () => {
             {stockText}
           </Col>
         </Row>
+        <Row justify="center">
+          <Descriptions title="Details" column={1} bordered style={{ maxWidth: '900px', width: '100%' }}>
+            {Object.keys(prod.details).map((key) => (
+              <Descriptions.Item label={toSentenceCase(key)}>
+                {prod.details[key] || ''}
+              </Descriptions.Item>
+            ))}
+          </Descriptions>
+        </Row>
       </>
     )
-    return page
   }
 
   return <Row justify="center" align="middle"><Spin size="large" /></Row>
