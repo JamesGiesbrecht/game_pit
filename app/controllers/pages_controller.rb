@@ -1,5 +1,4 @@
 class PagesController < InheritedResources::Base
-
   # GET /page.json
   def index
     @pages = Page.all

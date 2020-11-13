@@ -18,11 +18,11 @@ AdminUser.destroy_all
 Page.destroy_all
 
 # if Rails.env.development?
-  AdminUser.create!(
-    email:                 "admin@example.com",
-    password:              "password",
-    password_confirmation: "password"
-  )
+AdminUser.create!(
+  email:                 "admin@example.com",
+  password:              "password",
+  password_confirmation: "password"
+)
 # end
 
 products = JSON.parse(File.read(Rails.root.join("db/data/scripts/bb.json")))
