@@ -3,7 +3,7 @@
   height: 300px;
 }
 
-.ant-card-cover img {
+.ant-card-cover img, .ant-card-cover a {
   height: 100%;
   width: 100%;
   object-fit: contain;
