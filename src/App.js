@@ -7,6 +7,7 @@ import StoreProvider from 'context/StoreContext'
 import 'App.css'
 import 'Ant.css'
 import ProductPage from 'components/products/ProductPage'
+import Cart from 'components/Cart'
 
 const App = () => (
   <BrowserRouter>
@@ -15,6 +16,7 @@ const App = () => (
         <Switch>
           <Route path="/products/:id" component={ProductPage} />
           <Route path="/products" component={FetchProducts} />
+          <Route path="/cart" component={Cart} />
           <Route path="/:permalink" component={Page} />
         </Switch>
       </Layout>
