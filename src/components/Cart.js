@@ -1,12 +1,19 @@
 import React, { useContext } from 'react'
-import { Table, Typography } from 'antd'
+import { Image, Table, Typography } from 'antd'
 import { StoreContext } from 'context/StoreContext'
 
 const { Title, Text } = Typography
 
 const Cart = () => {
   const { shoppingCart } = useContext(StoreContext)
+  let total = 0
+
   const columns = [
+    {
+      dataIndex: 'img',
+      title: '',
+      key: 'img',
+    },
     {
       dataIndex: 'name',
       title: 'Name',
@@ -23,9 +30,9 @@ const Cart = () => {
       key: 'quantity',
     },
     {
-      title: 'Total Price',
-      dataIndex: 'totalPrice',
-      key: 'totalPrice',
+      title: 'Total',
+      dataIndex: 'total',
+      key: 'total',
     },
   ]
 
@@ -36,12 +43,15 @@ const Cart = () => {
     if (!isDuplicateItem) {
       const filteredCart = shoppingCart.filter((s) => s.id === item.id)
       const itemPrice = (item.price - item.price * item.discount).toFixed(2)
+      const itemTotalPrice = filteredCart.length * itemPrice
+      total += itemTotalPrice
       data.push({
         key: item.id,
+        img: <Image src={item.thumbnail} width={60} />,
         name: item.name,
         price: `$${itemPrice}`,
         quantity: filteredCart.length,
-        totalPrice: `$${filteredCart.length * itemPrice}`,
+        total: `$${itemTotalPrice}`,
       })
     }
   })
@@ -49,7 +59,11 @@ const Cart = () => {
   return (
     <>
       <Title>Your Cart</Title>
-      <Table columns={columns} dataSource={data} />
+      <Table
+        columns={columns}
+        dataSource={data}
+        pagination={false}
+      />
     </>
   )
 }
