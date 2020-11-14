@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Card, message, Space, Typography } from 'antd'
-import { PlusOutlined, CheckOutlined, CheckCircleOutlined, StopOutlined, LoadingOutlined } from '@ant-design/icons'
+import { PlusOutlined, CheckOutlined, CheckCircleOutlined, StopOutlined } from '@ant-design/icons'
 import { StoreContext } from 'context/StoreContext'
 import { Link } from 'react-router-dom'
 
@@ -8,21 +8,19 @@ const { Meta } = Card
 const { Text } = Typography
 
 const Product = ({ product }) => {
-  const { shoppingCart, addItemToShoppingCart } = useContext(StoreContext)
-  const [addToCartLoading, setAddToCartLoading] = useState(false)
-  const inCart = shoppingCart.some((cartItem) => cartItem.id === product.id)
+  const { addItemToShoppingCart } = useContext(StoreContext)
+  const [addToCartIcon, setAddToCartIcon] = useState()
   const hasDiscount = product.discount > 0
   const inStock = product.stock_quantity > 0
 
   const addToCart = () => {
-    setAddToCartLoading(true)
+    setAddToCartIcon(<CheckCircleOutlined style={{ color: 'green' }} />)
+    addItemToShoppingCart(product)
+    message.success(`${product.name} added to cart`, 1.5)
     setTimeout(() => {
-      addItemToShoppingCart(product)
-      message.success(`${product.name} added to cart`)
-      setAddToCartLoading(false)
-    }, 500)
+      setAddToCartIcon(<PlusOutlined onClick={addToCart} />)
+    }, 1500)
   }
-
   const description = (() => {
     const d = product.details
     const possibleDescriptions = ['capacity', 'colour', 'platform', 'publisher']
@@ -49,17 +47,9 @@ const Product = ({ product }) => {
 
   const addToCartInStock = (() => {
     if (inStock) {
-      let addToCartIcon
-      if (addToCartLoading) {
-        addToCartIcon = <LoadingOutlined />
-      } else if (inCart) {
-        addToCartIcon = <CheckCircleOutlined style={{ color: 'green' }} />
-      } else {
-        addToCartIcon = <PlusOutlined onClick={addToCart} />
-      }
       return (
         <div className="product-desc">
-          {addToCartIcon}
+          {addToCartIcon || <PlusOutlined onClick={addToCart} />}
           <span style={{ color: 'green' }}>
             <CheckOutlined />
             {' In Stock'}

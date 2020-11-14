@@ -28,7 +28,7 @@ const ProductPage = () => {
 
   const addToCart = () => {
     addItemToShoppingCart(prod)
-    message.success(`${prod.name} added to cart`)
+    message.success(`${prod.name} added to cart`, 1.5)
   }
 
   const toSentenceCase = (value) => {
