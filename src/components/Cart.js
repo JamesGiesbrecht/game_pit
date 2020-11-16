@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Button, Col, Image, Row, Space, Table, Typography } from 'antd'
 import { StoreContext } from 'context/StoreContext'
 import { toCurrency } from 'utility/util'
@@ -61,7 +61,18 @@ const Cart = () => {
       data.push({
         key: item.id,
         img: <Image src={item.thumbnail} width={60} />,
-        name: item.name,
+        name: (
+          <>
+            {item.name}
+            <Button
+              type="text"
+              danger
+              onClick={() => removeItemFromCart(item.id)}
+            >
+              Remove
+            </Button>
+          </>
+        ),
         price: toCurrency(itemPrice),
         quantity: (
           <>
