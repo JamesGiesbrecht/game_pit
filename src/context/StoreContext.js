@@ -13,6 +13,12 @@ export default ({ children }) => {
   const store = {
     shoppingCart,
     addItemToShoppingCart: (product) => setShoppingCart((prev) => [...prev, product]),
+    removeItemFromCart: (id, removeAll = true) => setShoppingCart((prev) => {
+      if (removeAll) {
+        return prev.filter((item) => item.id === id)
+      }
+      return prev.splice(prev.findIndex((item) => item.id === id), 1)
+    }),
     breadcrumbs,
   }
 
