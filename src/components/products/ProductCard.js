@@ -8,14 +8,14 @@ const { Meta } = Card
 const { Text } = Typography
 
 const Product = ({ product }) => {
-  const { addItemToShoppingCart } = useContext(StoreContext)
+  const { addItemToCart } = useContext(StoreContext)
   const [addToCartIcon, setAddToCartIcon] = useState()
   const hasDiscount = product.discount > 0
   const inStock = product.stock_quantity > 0
 
   const addToCart = () => {
     setAddToCartIcon(<CheckCircleOutlined style={{ color: 'green' }} />)
-    addItemToShoppingCart(product)
+    addItemToCart(product)
     message.success(`${product.name} added to cart`, 1.5)
     setTimeout(() => {
       setAddToCartIcon(<PlusOutlined onClick={addToCart} />)

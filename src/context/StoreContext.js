@@ -12,7 +12,7 @@ export default ({ children }) => {
 
   const store = {
     shoppingCart,
-    addItemToShoppingCart: (product) => setShoppingCart((prev) => [...prev, product]),
+    addItemToCart: (product) => setShoppingCart((prev) => [...prev, product]),
     removeItemFromCart: (id, removeAll = true) => setShoppingCart((prev) => {
       if (removeAll) {
         return prev.filter((item) => item.id === id)

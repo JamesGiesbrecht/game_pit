@@ -9,7 +9,7 @@ const { Text, Title } = Typography
 
 const ProductPage = () => {
   const { product } = useLocation()
-  const { addItemToShoppingCart } = useContext(StoreContext)
+  const { addItemToCart } = useContext(StoreContext)
   const [prod, setProd] = useState(product)
   const params = useParams()
 
@@ -27,7 +27,7 @@ const ProductPage = () => {
   }, [params, product])
 
   const addToCart = () => {
-    addItemToShoppingCart(prod)
+    addItemToCart(prod)
     message.success(`${prod.name} added to cart`, 1.5)
   }
 
