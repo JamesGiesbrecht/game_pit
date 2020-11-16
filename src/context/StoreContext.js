@@ -7,17 +7,25 @@ export default ({ children }) => {
   const [breadcrumbs, setBreadcrumbs] = useState(['Home'])
 
   useEffect(() => {
+    console.log(shoppingCart)
     localStorage.setItem('gamePitShoppingCart', JSON.stringify(shoppingCart))
   }, [shoppingCart])
 
   const store = {
     shoppingCart,
     addItemToCart: (product) => setShoppingCart((prev) => [...prev, product]),
-    removeItemFromCart: (id, removeAll = true) => setShoppingCart((prev) => {
-      if (removeAll) {
-        return prev.filter((item) => item.id === id)
-      }
-      return prev.splice(prev.findIndex((item) => item.id === id), 1)
+    removeItemFromCart: (id) => setShoppingCart((prev) => prev.filter((item) => item.id !== id)),
+    removeFirstItemFromCart: (id) => setShoppingCart((prev) => {
+      let matchFound = false
+      // Not optimized but w/e
+      // The double reverse() is so the items in the cart stay in the right order in the cart
+      return prev.reverse().filter((item) => {
+        if (matchFound || item.id !== id) {
+          return true
+        }
+        matchFound = true
+        return false
+      }).reverse()
     }),
     breadcrumbs,
   }

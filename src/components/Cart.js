@@ -1,7 +1,8 @@
-import React, { useContext } from 'react'
-import { Col, Image, Row, Space, Table, Typography } from 'antd'
+import React, { useContext, useEffect } from 'react'
+import { Button, Col, Image, Row, Space, Table, Typography } from 'antd'
 import { StoreContext } from 'context/StoreContext'
 import { toCurrency } from 'utility/util'
+import { MinusOutlined, PlusOutlined } from '@ant-design/icons'
 
 const { Title, Text } = Typography
 
@@ -10,7 +11,12 @@ const gst = 0.05
 const pst = 0.07
 
 const Cart = () => {
-  const { shoppingCart } = useContext(StoreContext)
+  const {
+    shoppingCart,
+    addItemToCart,
+    removeItemFromCart,
+    removeFirstItemFromCart,
+  } = useContext(StoreContext)
   let subTotal = 0
   let discountTotal = 0
 
@@ -57,7 +63,23 @@ const Cart = () => {
         img: <Image src={item.thumbnail} width={60} />,
         name: item.name,
         price: toCurrency(itemPrice),
-        quantity: filteredCart.length,
+        quantity: (
+          <>
+            <Button
+              size="small"
+              shape="circle"
+              icon={<MinusOutlined />}
+              onClick={() => removeFirstItemFromCart(item.id)}
+            />
+            {` ${filteredCart.length} `}
+            <Button
+              size="small"
+              shape="circle"
+              icon={<PlusOutlined />}
+              onClick={() => addItemToCart(item)}
+            />
+          </>
+        ),
         total: toCurrency(itemTotalPrice),
       })
     }
