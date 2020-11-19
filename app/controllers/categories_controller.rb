@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[show update destroy]
+  before_action :set_category, only: %i[update destroy]
 
   # GET /categories.json
   def index
@@ -7,7 +7,9 @@ class CategoriesController < ApplicationController
   end
 
   # GET /categories/1.json
-  def show; end
+  def show
+    @category = Category.includes(products: [:image_attachment, product_details: [:detail]]).find(params[:id])
+  end
 
   # POST /categories.json
   def create
