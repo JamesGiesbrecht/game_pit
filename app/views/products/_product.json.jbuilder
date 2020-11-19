@@ -14,7 +14,6 @@ json.details details
 json.image url_for(product.image)
 # puts product["name"] + product["id"].to_s if !product.image.variable?
 if product.image.variable?
-  # TODO: add .processed when settled on a size
   json.thumbnail rails_representation_url(product.image.variant(resize: "300x300").processed, only_path: true)
 end
 
