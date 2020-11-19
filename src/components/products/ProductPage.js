@@ -4,6 +4,7 @@ import { Row, Col, Spin, Image, Space, Typography, Button, Descriptions, message
 import { useLocation, useParams } from 'react-router-dom'
 import { ShoppingCartOutlined, StopOutlined } from '@ant-design/icons'
 import { StoreContext } from 'context/StoreContext'
+import Error from 'components/Error'
 
 const { Text, Title } = Typography
 
@@ -11,6 +12,7 @@ const ProductPage = () => {
   const { product } = useLocation()
   const { addItemToCart } = useContext(StoreContext)
   const [prod, setProd] = useState(product)
+  const [hasError, setHasError] = useState(false)
   const params = useParams()
 
   useEffect(() => {
@@ -22,6 +24,7 @@ const ProductPage = () => {
         })
         .catch((err) => {
           console.log(err)
+          setHasError(true)
         })
     }
   }, [params, product])
@@ -34,6 +37,8 @@ const ProductPage = () => {
   const toSentenceCase = (value) => {
     return value.split('_').map((word) => `${word.charAt(0).toUpperCase() + word.slice(1)} `)
   }
+
+  if (hasError) return <Error />
 
   if (prod) {
     const hasDiscount = prod.discount > 0
