@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Contact",
+    "content": "Content of Contact Page",
+    "permalink": "contact"
+  },
+  {
+    "title": "About Us",
+    "content": "Content of About Us Page",
+    "permalink": "about"
+  }
+]
