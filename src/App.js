@@ -14,6 +14,7 @@ const App = () => (
     <StoreProvider>
       <Layout>
         <Switch>
+          <Route path="/products/category/:id" component={FetchProducts} />
           <Route path="/products/:id" component={ProductPage} />
           <Route path="/products" component={FetchProducts} />
           <Route path="/cart" component={Cart} />
