@@ -75,7 +75,7 @@ const Cart = () => {
         ),
         price: toCurrency(itemPrice),
         quantity: (
-          <>
+          <div style={{ minWidth: '75px' }}>
             <Button
               size="small"
               shape="circle"
@@ -89,7 +89,7 @@ const Cart = () => {
               icon={<PlusOutlined />}
               onClick={() => addItemToCart(item)}
             />
-          </>
+          </div>
         ),
         total: toCurrency(itemTotalPrice),
       })
@@ -106,6 +106,7 @@ const Cart = () => {
         columns={columns}
         dataSource={data}
         pagination={false}
+        locale={{ emptyText: 'No items in cart' }}
       />
       <Space style={{ float: 'right', marginRight: '2em' }} direction="vertical" size="middle">
         <Row>
