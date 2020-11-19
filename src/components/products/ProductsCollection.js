@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Col, Row, Pagination, Select, Checkbox, Input } from 'antd'
+import { Col, Row, Pagination, Select, Checkbox, Input, Typography } from 'antd'
 import ProductCard from './ProductCard'
 
+const { Title } = Typography
 const { Option } = Select
 const { Search } = Input
 
@@ -37,7 +38,7 @@ const sorts = (() => {
   }
 })()
 
-const Products = ({ products }) => {
+const Products = ({ products, title }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(20)
   const [sort, setSort] = useState('default')
@@ -116,6 +117,7 @@ const Products = ({ products }) => {
 
   return (
     <div>
+      <Title level={2}>{title}</Title>
       <Row justify="space-between">
         {pagination}
         {sortBy}

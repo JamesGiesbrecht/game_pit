@@ -8,6 +8,7 @@ const FetchProducts = () => {
   const history = useHistory()
   const params = useParams()
   const [products, setProducts] = useState([])
+  const [title, setTitle] = useState()
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -23,6 +24,7 @@ const FetchProducts = () => {
       .then((res) => {
         console.log(res)
         const productJson = params.id ? res.data.products : res.data
+        setTitle(res.data.name || 'All Products')
         setProducts(productJson)
       })
       .catch((err) => {
@@ -34,7 +36,7 @@ const FetchProducts = () => {
 
   const fullscreenSpinner = <Row justify="center" align="middle"><Spin size="large" /></Row>
 
-  return isLoading ? fullscreenSpinner : <ProductsCollection products={products}/>
+  return isLoading ? fullscreenSpinner : <ProductsCollection products={products} title={title} />
 }
 
 export default FetchProducts
