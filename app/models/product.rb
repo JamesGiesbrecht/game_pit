@@ -5,4 +5,8 @@ class Product < ApplicationRecord
   has_many :order_products
   has_many :orders, through: :order_products
   has_one_attached :image
+
+  validates :name, :price, :stock_quantity, presence: true
+  validates :price, :discount, numericality: true
+  validates :stock_quantity, numericality: { only_integer: true }
 end
