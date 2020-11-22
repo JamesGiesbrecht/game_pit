@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Row, Spin } from 'antd'
 import { useHistory, useParams } from 'react-router-dom'
+import Loader from 'components/UI/Loader'
 import ProductsCollection from './ProductsCollection'
 
 const FetchProducts = () => {
@@ -34,9 +34,7 @@ const FetchProducts = () => {
       .finally(() => setIsLoading(false))
   }, [history, params])
 
-  const fullscreenSpinner = <Row justify="center" align="middle"><Spin size="large" /></Row>
-
-  return isLoading ? fullscreenSpinner : <ProductsCollection products={products} title={title} />
+  return isLoading ? <Loader /> : <ProductsCollection products={products} title={title} />
 }
 
 export default FetchProducts

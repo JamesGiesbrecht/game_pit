@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import { Row, Col, Spin, Image, Space, Typography, Button, Descriptions, message } from 'antd'
+import { Row, Col, Image, Space, Typography, Button, Descriptions, message } from 'antd'
 import { useLocation, useParams } from 'react-router-dom'
 import { ShoppingCartOutlined, StopOutlined } from '@ant-design/icons'
 import { StoreContext } from 'context/StoreContext'
 import Error from 'components/Error'
+import Loader from 'components/UI/Loader'
 
 const { Text, Title } = Typography
 
@@ -110,7 +111,7 @@ const ProductPage = () => {
     )
   }
 
-  return <Row justify="center" align="middle"><Spin size="large" /></Row>
+  return <Loader />
 }
 
 export default ProductPage
