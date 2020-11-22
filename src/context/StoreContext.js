@@ -1,12 +1,11 @@
 import React, { useState, useEffect, createContext } from 'react'
+import { CRUMBS } from 'utility/consts'
 
 export const StoreContext = createContext()
 
 export default ({ children }) => {
   const [shoppingCart, setShoppingCart] = useState(JSON.parse(localStorage.getItem('gamePitShoppingCart')) || [])
-  const [breadcrumbs, setBreadcrumbs] = useState([
-    { breadcrumbName: 'Home', path: '/' },
-  ])
+  const [breadcrumbs, setBreadcrumbs] = useState([CRUMBS.home])
 
   useEffect(() => {
     console.log(shoppingCart)
@@ -30,6 +29,7 @@ export default ({ children }) => {
       }).reverse()
     }),
     breadcrumbs,
+    setBreadcrumbs: (crumbs) => setBreadcrumbs([CRUMBS.home, ...crumbs]),
   }
 
   return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>

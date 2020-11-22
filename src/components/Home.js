@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { List, Typography } from 'antd'
 import { Link } from 'react-router-dom'
+import { StoreContext } from 'context/StoreContext'
 import Loader from './UI/Loader'
 
 const { Title, Text } = Typography
 
 const Home = () => {
+  const { setBreadcrumbs } = useContext(StoreContext)
   const [categories, setCategories] = useState([{ link: '/products', name: 'All Products' }])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    setBreadcrumbs([])
     axios.get('/categories.json')
       .then((res) => {
         console.log(res)
@@ -35,6 +38,8 @@ const Home = () => {
 
   return (
     <div>
+      <Title level={2}>Welcome to Game Pit</Title>
+      <Text>Your #1 stop for Video Game and Video Game Accessories sales!</Text>
       <Title level={2}>Browse By Category</Title>
       {isLoading ? <Loader /> : categoryList}
     </div>

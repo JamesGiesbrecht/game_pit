@@ -6,12 +6,13 @@ import { ShoppingCartOutlined, StopOutlined } from '@ant-design/icons'
 import { StoreContext } from 'context/StoreContext'
 import Error from 'components/Error'
 import Loader from 'components/UI/Loader'
+import { CRUMBS } from 'utility/consts'
 
 const { Text, Title } = Typography
 
 const ProductPage = () => {
   const { product } = useLocation()
-  const { addItemToCart } = useContext(StoreContext)
+  const { addItemToCart, setBreadcrumbs } = useContext(StoreContext)
   const [prod, setProd] = useState(product)
   const [hasError, setHasError] = useState(false)
   const params = useParams()
@@ -22,11 +23,20 @@ const ProductPage = () => {
         .then((res) => {
           console.log(res)
           setProd(res.data)
+          setBreadcrumbs([
+            CRUMBS.product,
+            { breadcrumbName: res.data.name, path: res.data.id.toString() },
+          ])
         })
         .catch((err) => {
           console.log(err)
           setHasError(true)
         })
+    } else {
+      setBreadcrumbs([
+        CRUMBS.product,
+        { breadcrumbName: product.name, path: product.id.toString() },
+      ])
     }
   }, [params, product])
 

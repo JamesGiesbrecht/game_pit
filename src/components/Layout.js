@@ -31,7 +31,7 @@ const MyLayout = ({ children }) => {
     return last ? (
       <span>{route.breadcrumbName}</span>
     ) : (
-      <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+      <Link to={`/${paths.join('/')}`}>{route.breadcrumbName}</Link>
     )
   }
 
@@ -82,7 +82,7 @@ const MyLayout = ({ children }) => {
         </Menu>
       </Header>
       <Content style={{ padding: contentPadding }} className="all-content">
-        <Breadcrumb itemRender={itemRender} routes={breadcrumbs} />
+        <Breadcrumb itemRender={itemRender} routes={breadcrumbs} style={{ padding: '16px 0' }} />
         <div className="main-content">
           {children}
         </div>
