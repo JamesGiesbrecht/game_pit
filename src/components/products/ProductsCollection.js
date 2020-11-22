@@ -42,6 +42,7 @@ const Products = ({ products, title }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(20)
   const [sort, setSort] = useState('default')
+  const [filter, setFilter] = useState()
   const [showSale, setShowSale] = useState(false)
   const [search, setSearch] = useState('')
   const indexOfLastProduct = currentPage * itemsPerPage
@@ -93,6 +94,15 @@ const Products = ({ products, title }) => {
     setCurrentPage(1)
   }
 
+  const onFilterChange = (value) => {
+    if (value === 'all') {
+      setFilter(null)
+    } else {
+      setFilter(value)
+    }
+    setCurrentPage(1)
+  }
+
   const pagination = (
     <Pagination
       showSizeChanger
@@ -115,12 +125,30 @@ const Products = ({ products, title }) => {
     </Select>
   )
 
+  const uniqueCategories = (() => {
+    const unique = []
+    products.forEach((prod) => {
+      if (unique.findIndex((cat) => cat.id === prod.category.id) === -1) {
+        unique.push(prod.category)
+      }
+    })
+    return unique
+  })()
+
+  const filterCategory = (
+    <Select defaultValue="all" style={{ width: 200 }} onChange={onFilterChange}>
+      <Option value="all">All Products</Option>
+      {uniqueCategories.map((cat) => <Option value={cat.id}>{cat.name}</Option>)}
+    </Select>
+  )
+
   return (
     <div>
       <Title level={2}>{title}</Title>
       <Row justify="space-between">
         {pagination}
         {sortBy}
+        {filterCategory}
         <Search placeholder="input search text" onChange={onSearch} enterButton />
         <Checkbox onChange={onSaleChange}>Sale</Checkbox>
       </Row>
