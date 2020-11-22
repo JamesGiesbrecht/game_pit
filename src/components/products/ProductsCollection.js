@@ -42,13 +42,13 @@ const Products = ({ products, title }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(20)
   const [sort, setSort] = useState('default')
-  const [filter, setFilter] = useState()
+  const [categoryFilter, setCategoryFilter] = useState()
   const [showSale, setShowSale] = useState(false)
   const [search, setSearch] = useState('')
   const indexOfLastProduct = currentPage * itemsPerPage
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage
 
-  const filteredProducts = [...products].filter((p) => {
+  let filteredProducts = [...products].filter((p) => {
     const searchFilter = (() => {
       if (p.name.toLowerCase().includes(search)) return true
       return Object.keys(p.details).some((key) => {
@@ -58,6 +58,9 @@ const Products = ({ products, title }) => {
     })()
     return showSale ? p.discount > 0 && searchFilter : searchFilter
   })
+  if (categoryFilter) {
+    filteredProducts = filteredProducts.filter((p) => p.category.id === categoryFilter)
+  }
   const sortedProducts = sorts[sort] ? [...filteredProducts].sort(sorts[sort]) : filteredProducts
   const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct).map((p) => (
     <Col
@@ -96,9 +99,9 @@ const Products = ({ products, title }) => {
 
   const onFilterChange = (value) => {
     if (value === 'all') {
-      setFilter(null)
+      setCategoryFilter(null)
     } else {
-      setFilter(value)
+      setCategoryFilter(value)
     }
     setCurrentPage(1)
   }
@@ -135,7 +138,7 @@ const Products = ({ products, title }) => {
     return unique
   })()
 
-  const filterCategory = (
+  const filter = (
     <Select defaultValue="all" style={{ width: 200 }} onChange={onFilterChange}>
       <Option value="all">All Products</Option>
       {uniqueCategories.map((cat) => <Option value={cat.id}>{cat.name}</Option>)}
@@ -148,7 +151,7 @@ const Products = ({ products, title }) => {
       <Row justify="space-between">
         {pagination}
         {sortBy}
-        {filterCategory}
+        {filter}
         <Search placeholder="input search text" onChange={onSearch} enterButton />
         <Checkbox onChange={onSaleChange}>Sale</Checkbox>
       </Row>
