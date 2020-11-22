@@ -68,7 +68,9 @@ const MyLayout = ({ children }) => {
           mode="horizontal"
           className="nav-menu"
         >
-          <Image src={wideLogo} className="logo" />
+          <Link to="/">
+            <Image src={wideLogo} className="logo" preview={false} />
+          </Link>
           {navItems}
         </Menu>
       </Header>
