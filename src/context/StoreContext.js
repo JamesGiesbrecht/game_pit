@@ -4,7 +4,9 @@ export const StoreContext = createContext()
 
 export default ({ children }) => {
   const [shoppingCart, setShoppingCart] = useState(JSON.parse(localStorage.getItem('gamePitShoppingCart')) || [])
-  const [breadcrumbs, setBreadcrumbs] = useState(['Home'])
+  const [breadcrumbs, setBreadcrumbs] = useState([
+    { breadcrumbName: 'Home', path: '/' },
+  ])
 
   useEffect(() => {
     console.log(shoppingCart)

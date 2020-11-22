@@ -26,6 +26,15 @@ const MyLayout = ({ children }) => {
       })
   }, [])
 
+  const itemRender = (route, params, routes, paths) => {
+    const last = routes.indexOf(route) === routes.length - 1
+    return last ? (
+      <span>{route.breadcrumbName}</span>
+    ) : (
+      <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+    )
+  }
+
   const navItems = [
     // Add hardcoded links here
     <Menu.Item key="products">
@@ -55,8 +64,6 @@ const MyLayout = ({ children }) => {
 
   const handleMenuClick = (e) => setCurrentNav(e.key)
 
-  const crumbs = breadcrumbs.map((bc) => <Breadcrumb.Item key={bc}>{bc}</Breadcrumb.Item>)
-
   const contentPadding = !useBreakpoint().xs ? '0 40px' : '0'
 
   return (
@@ -75,11 +82,7 @@ const MyLayout = ({ children }) => {
         </Menu>
       </Header>
       <Content style={{ padding: contentPadding }} className="all-content">
-        {crumbs.length > 0 && (
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            {crumbs}
-          </Breadcrumb>
-        )}
+        <Breadcrumb itemRender={itemRender} routes={breadcrumbs} />
         <div className="main-content">
           {children}
         </div>
