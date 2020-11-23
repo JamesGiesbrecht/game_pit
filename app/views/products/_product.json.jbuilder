@@ -17,4 +17,4 @@ if product.image.variable?
   json.thumbnail rails_representation_url(product.image.variant(resize: "300x300").processed, only_path: true)
 end
 
-json.url product_url(product, format: :json)
+json.url product_url(product, only_path: true, format: :json)
