@@ -131,7 +131,15 @@ video_games.each_with_index do |v, index|
   add_detail(game, "Developer", v["developer"])
   add_detail(game, "Critic Score", v["criticScore"])
   add_detail(game, "User Score", v["userScore"])
-  image = open(v["imgUrl"])
+  uri = URI.parse(v["imgUrl"])
+  tries = 3
+  begin
+    image = uri.open(redirect: false)
+  rescue OpenURI::HTTPRedirect => redirect
+    uri = redirect.uri # assigned from the "Location" response header
+    retry if (tries -= 1) > 0
+    raise
+  end
   game.image.attach(io: image, filename: "#{v['name'].gsub(' ', '_')}_#{v['platform'].gsub(' ', '_')}")
   game.save
 end

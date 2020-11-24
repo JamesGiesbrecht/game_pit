@@ -3,5 +3,5 @@ class Address < ApplicationRecord
   belongs_to :customer
   has_many :orders, dependent: :destroy
 
-  validates :addressm, :city, presence: true
+  validates :address, :city, presence: true
 end
