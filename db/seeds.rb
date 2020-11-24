@@ -91,8 +91,14 @@ products.each_with_index do |p, index|
     color = d[1] if d[0] === "Colour"
     add_detail(product, d[0], d[1])
   end
-  image = open(p["image"])
-  product.image.attach(io: image, filename: "#{product['name'].gsub(' ', '_')}_#{color.gsub(' ', '_')}")
+  filename = "#{product['name'].gsub(' ', '_')}_#{color.gsub(' ', '_')}.jpg"
+  begin
+    image = open(Rails.root.join("db/data/images/#{filename.gsub(':', '-')}"))
+  rescue => e
+    puts e
+    image = open(p["image"])
+  end
+  product.image.attach(io: image, filename: filename)
   product.save
 end
 
@@ -133,14 +139,20 @@ video_games.each_with_index do |v, index|
   add_detail(game, "User Score", v["userScore"])
   uri = URI.parse(v["imgUrl"])
   tries = 3
+  filename = "#{v['name'].gsub(' ', '_')}_#{v['platform'].gsub(' ', '_')}.jpg"
   begin
-    image = uri.open(redirect: false)
-  rescue OpenURI::HTTPRedirect => redirect
-    uri = redirect.uri # assigned from the "Location" response header
-    retry if (tries -= 1) > 0
-    raise
+    image = open(Rails.root.join("db/data/images/#{filename.gsub(':', '-')}"))
+  rescue => e
+    puts e
+    begin
+      image = uri.open(redirect: false)
+    rescue OpenURI::HTTPRedirect => redirect
+      uri = redirect.uri # assigned from the "Location" response header
+      retry if (tries -= 1) > 0
+      raise
+    end
   end
-  game.image.attach(io: image, filename: "#{v['name'].gsub(' ', '_')}_#{v['platform'].gsub(' ', '_')}")
+  game.image.attach(io: image, filename: filename)
   game.save
 end
 
