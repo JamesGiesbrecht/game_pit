@@ -16,7 +16,7 @@ const MyLayout = ({ children }) => {
   const [currentNav, setCurrentNav] = useState(location.pathname.split('/')[1])
 
   useEffect(() => {
-    axios.get('/pages.json')
+    axios.get('/api/pages.json')
       .then((res) => {
         console.log(res)
         setPages(res.data)
@@ -25,6 +25,15 @@ const MyLayout = ({ children }) => {
         console.log(err)
       })
   }, [])
+
+  const itemRender = (route, params, routes, paths) => {
+    const last = routes.indexOf(route) === routes.length - 1
+    return last ? (
+      <span>{route.breadcrumbName}</span>
+    ) : (
+      <Link to={`/${paths.join('/')}`}>{route.breadcrumbName}</Link>
+    )
+  }
 
   const navItems = [
     // Add hardcoded links here
@@ -55,8 +64,6 @@ const MyLayout = ({ children }) => {
 
   const handleMenuClick = (e) => setCurrentNav(e.key)
 
-  const crumbs = breadcrumbs.map((bc) => <Breadcrumb.Item key={bc}>{bc}</Breadcrumb.Item>)
-
   const contentPadding = !useBreakpoint().xs ? '0 40px' : '0'
 
   return (
@@ -68,16 +75,14 @@ const MyLayout = ({ children }) => {
           mode="horizontal"
           className="nav-menu"
         >
-          <Image src={wideLogo} className="logo" />
+          <Link to="/">
+            <Image src={wideLogo} className="logo" preview={false} />
+          </Link>
           {navItems}
         </Menu>
       </Header>
       <Content style={{ padding: contentPadding }} className="all-content">
-        {crumbs.length > 0 && (
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            {crumbs}
-          </Breadcrumb>
-        )}
+        <Breadcrumb itemRender={itemRender} routes={breadcrumbs} style={{ padding: '16px 0' }} />
         <div className="main-content">
           {children}
         </div>

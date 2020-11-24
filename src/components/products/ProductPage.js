@@ -1,28 +1,42 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import { Row, Col, Spin, Image, Space, Typography, Button, Descriptions, message } from 'antd'
+import { Row, Col, Image, Space, Typography, Button, Descriptions, message } from 'antd'
 import { useLocation, useParams } from 'react-router-dom'
 import { ShoppingCartOutlined, StopOutlined } from '@ant-design/icons'
 import { StoreContext } from 'context/StoreContext'
+import Error from 'components/Error'
+import Loader from 'components/UI/Loader'
+import { CRUMBS } from 'utility/consts'
 
 const { Text, Title } = Typography
 
 const ProductPage = () => {
   const { product } = useLocation()
-  const { addItemToCart } = useContext(StoreContext)
+  const { addItemToCart, setBreadcrumbs } = useContext(StoreContext)
   const [prod, setProd] = useState(product)
+  const [hasError, setHasError] = useState(false)
   const params = useParams()
 
   useEffect(() => {
     if (!product) {
-      axios.get(`/products/${params.id}.json`)
+      axios.get(`/api/products/${params.id}.json`)
         .then((res) => {
           console.log(res)
           setProd(res.data)
+          setBreadcrumbs([
+            CRUMBS.product,
+            { breadcrumbName: res.data.name, path: res.data.id.toString() },
+          ])
         })
         .catch((err) => {
           console.log(err)
+          setHasError(true)
         })
+    } else {
+      setBreadcrumbs([
+        CRUMBS.product,
+        { breadcrumbName: product.name, path: product.id.toString() },
+      ])
     }
   }, [params, product])
 
@@ -34,6 +48,8 @@ const ProductPage = () => {
   const toSentenceCase = (value) => {
     return value.split('_').map((word) => `${word.charAt(0).toUpperCase() + word.slice(1)} `)
   }
+
+  if (hasError) return <Error />
 
   if (prod) {
     const hasDiscount = prod.discount > 0
@@ -105,7 +121,7 @@ const ProductPage = () => {
     )
   }
 
-  return <Row justify="center" align="middle"><Spin size="large" /></Row>
+  return <Loader />
 }
 
 export default ProductPage

@@ -7,6 +7,7 @@ import StoreProvider from 'context/StoreContext'
 import 'App.css'
 import 'Ant.css'
 import ProductPage from 'components/products/ProductPage'
+import Home from 'components/Home'
 import Cart from 'components/Cart'
 
 const App = () => (
@@ -14,10 +15,12 @@ const App = () => (
     <StoreProvider>
       <Layout>
         <Switch>
+          <Route path="/products/category/:id" component={FetchProducts} />
           <Route path="/products/:id" component={ProductPage} />
           <Route path="/products" component={FetchProducts} />
           <Route path="/cart" component={Cart} />
           <Route path="/:permalink" component={Page} />
+          <Route path="/" component={Home} />
         </Switch>
       </Layout>
     </StoreProvider>

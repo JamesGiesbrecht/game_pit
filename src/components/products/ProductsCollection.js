@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Col, Row, Pagination, Select, Checkbox, Input } from 'antd'
+import { Col, Row, Pagination, Select, Checkbox, Input, Typography } from 'antd'
 import ProductCard from './ProductCard'
 
+const { Title } = Typography
 const { Option } = Select
 const { Search } = Input
 
@@ -37,16 +38,17 @@ const sorts = (() => {
   }
 })()
 
-const Products = ({ products }) => {
+const Products = ({ products, title }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(20)
   const [sort, setSort] = useState('default')
+  const [categoryFilter, setCategoryFilter] = useState()
   const [showSale, setShowSale] = useState(false)
   const [search, setSearch] = useState('')
   const indexOfLastProduct = currentPage * itemsPerPage
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage
 
-  const filteredProducts = [...products].filter((p) => {
+  let filteredProducts = [...products].filter((p) => {
     const searchFilter = (() => {
       if (p.name.toLowerCase().includes(search)) return true
       return Object.keys(p.details).some((key) => {
@@ -56,6 +58,9 @@ const Products = ({ products }) => {
     })()
     return showSale ? p.discount > 0 && searchFilter : searchFilter
   })
+  if (categoryFilter) {
+    filteredProducts = filteredProducts.filter((p) => p.category.id === categoryFilter)
+  }
   const sortedProducts = sorts[sort] ? [...filteredProducts].sort(sorts[sort]) : filteredProducts
   const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct).map((p) => (
     <Col
@@ -92,6 +97,15 @@ const Products = ({ products }) => {
     setCurrentPage(1)
   }
 
+  const onFilterChange = (value) => {
+    if (value === 'all') {
+      setCategoryFilter(null)
+    } else {
+      setCategoryFilter(value)
+    }
+    setCurrentPage(1)
+  }
+
   const pagination = (
     <Pagination
       showSizeChanger
@@ -114,11 +128,30 @@ const Products = ({ products }) => {
     </Select>
   )
 
+  const uniqueCategories = (() => {
+    const unique = []
+    products.forEach((prod) => {
+      if (unique.findIndex((cat) => cat.id === prod.category.id) === -1) {
+        unique.push(prod.category)
+      }
+    })
+    return unique
+  })()
+
+  const filter = (
+    <Select defaultValue="all" style={{ width: 200 }} onChange={onFilterChange}>
+      <Option value="all">All Products</Option>
+      {uniqueCategories.map((cat) => <Option value={cat.id}>{cat.name}</Option>)}
+    </Select>
+  )
+
   return (
     <div>
+      <Title level={2}>{title}</Title>
       <Row justify="space-between">
         {pagination}
         {sortBy}
+        {filter}
         <Search placeholder="input search text" onChange={onSearch} enterButton />
         <Checkbox onChange={onSaleChange}>Sale</Checkbox>
       </Row>
