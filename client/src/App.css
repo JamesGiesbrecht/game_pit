@@ -1,0 +1,53 @@
+@import '~antd/dist/antd.css';
+
+:root {
+  --blue: #40a9ff;
+  --grey: #ddd
+}
+
+.layout {
+  background-color: #f6f6f6;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+.all-content {
+  max-width: 1980px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.main-content {
+  min-height: 300px;
+  width: 100%;
+  padding: 10px 5px;
+}
+
+.header {
+  background-color: white;
+  box-shadow: 0 4px 8px #f0f1f2;
+}
+
+.nav-menu {
+  background-color: transparent;
+}
+
+.product-card {
+  padding: 15px 10px 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.product-desc {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-card-price {
+  font-size: 1.1em;
+  height: 2em;
+}
