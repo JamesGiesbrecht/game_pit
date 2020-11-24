@@ -11,6 +11,14 @@
     "csvtojson": "^2.0.10",
     "turbolinks": "^5.2.0"
   },
+  "scripts": {
+    "start": "rails s -e production -p 3300",
+    "build": "cd client && npm run build",
+    "kill": "kill -9 $(lsof -i tcp:3300 -t) || true",
+    "install:client": "cd client && npm ci",
+    "install:server": "bundle install && yarn install",
+    "deploy": "yarn kill && yarn install:server && yarn install:client && yarn build && yarn start"
+  },
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
