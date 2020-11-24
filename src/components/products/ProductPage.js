@@ -19,7 +19,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     if (!product) {
-      axios.get(`/products/${params.id}.json`)
+      axios.get(`/api/products/${params.id}.json`)
         .then((res) => {
           console.log(res)
           setProd(res.data)

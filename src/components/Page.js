@@ -10,7 +10,7 @@ const Page = () => {
   const [page, setPage] = useState({})
 
   useEffect(() => {
-    axios.get(`/pages/${params.permalink}.json`)
+    axios.get(`/api/pages/${params.permalink}.json`)
       .then((res) => {
         console.log(res)
         setPage(res.data)

@@ -14,7 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     setBreadcrumbs([])
-    axios.get('/categories.json')
+    axios.get('/api/categories.json')
       .then((res) => {
         console.log(res)
         setCategories((prev) => prev.concat(res.data))

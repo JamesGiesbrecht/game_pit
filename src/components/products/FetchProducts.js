@@ -19,9 +19,9 @@ const FetchProducts = () => {
     const categoryId = params.id
     let url
     if (params.id) {
-      url = `/categories/${categoryId}.json`
+      url = `/api/categories/${categoryId}.json`
     } else {
-      url = '/products.json'
+      url = '/api/products.json'
     }
     setIsLoading(true)
     axios.get(url)
@@ -35,7 +35,7 @@ const FetchProducts = () => {
       })
       .catch((err) => {
         console.log(err)
-        if (url !== '/products.json' && history.location.pathname !== '/products') history.push('/products')
+        if (url !== '/api/products.json' && history.location.pathname !== '/products') history.push('/products')
       })
       .finally(() => setIsLoading(false))
   }, [history, params])

@@ -16,7 +16,7 @@ const MyLayout = ({ children }) => {
   const [currentNav, setCurrentNav] = useState(location.pathname.split('/')[1])
 
   useEffect(() => {
-    axios.get('/pages.json')
+    axios.get('/api/pages.json')
       .then((res) => {
         console.log(res)
         setPages(res.data)
