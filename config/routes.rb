@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
+  # get "/download_attachments", to: "application#process_and_create_zip_file", as: "download_documents"
+
   get "*path", to: "application#fallback_index_html", constraints: lambda { |req|
     req.path.exclude? "rails/active_storage"
   } do
