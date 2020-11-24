@@ -13,6 +13,8 @@ module GamePit
     config.serve_static_files = true
     paths["public"] = File.join "client", "build"
 
+    config.hosts << "onesnap.jamesgiesbrecht.ca"
+    config.hosts << "gamepit.jamesgiesbrecht.ca"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

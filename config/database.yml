@@ -13,7 +13,12 @@ default: &default
 development:
   <<: *default
   # database: db/development.sqlite3
-  database: flatiron_mod3_development
+  # database: flatiron_mod3_development
+  url: <%= ENV["DATABASE_URL"] %>
+  username: gamepit
+  password: password
+  host: localhost
+  database: gamepit
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -26,6 +31,11 @@ test:
 production:
   <<: *default
   # database: db/production.sqlite3
-  database: flatiron_mod3_production
+  # database: flatiron_mod3_production
+  url: <%= ENV["DATABASE_URL"] %>
+  username: gamepit
+  password: password
+  host: localhost
+  database: gamepit
 
 # brew services restart postgresql
