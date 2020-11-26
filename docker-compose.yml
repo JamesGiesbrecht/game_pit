@@ -9,7 +9,7 @@ services:
       - database
       # - redis
     ports:
-      - "3000:3000"
+      - "3300:3300"
     volumes:
       - .:/app
       - gem_cache:/usr/local/bundle/gems
