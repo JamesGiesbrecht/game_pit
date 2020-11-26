@@ -13,7 +13,6 @@
   },
   "scripts": {
     "start": "rails s -e production -p 3300",
-    "build": "cd client && yarn build",
     "kill": "kill -9 $(lsof -i tcp:3300 -t) || true",
     "install:client": "cd client && yarn install",
     "install:server": "bundle install && yarn install",
