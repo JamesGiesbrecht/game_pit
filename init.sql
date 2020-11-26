@@ -1,0 +1,2 @@
+CREATE USER gamepit;
+ALTER USER gamepit WITH SUPERUSER;
